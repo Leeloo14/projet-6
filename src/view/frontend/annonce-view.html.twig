@@ -1,0 +1,35 @@
+{% extends "frontend/template.html.twig" %}
+
+{% block head %}
+    <title>Annonces publiées</title>
+{% endblock %}
+
+{% block body %}
+    <div class="global-container">
+        <div class="ml-2 mt-3">
+            <p><a class="text-white" href="index.php">Retour à l'accueil</a></p>
+        </div>
+
+        <div class="container container-white pt-5 pb-3 rounded">
+
+            <h3>
+                {{ annonce.title|escape }}
+            </h3>
+            <span class="font-italic">{{ annonce.creationDate|date("d/m/Y H:m") }}</span>
+
+            <p>
+                {{ annonce.content|raw }}
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

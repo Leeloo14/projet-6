@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.bas {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+
+}
+
+.wallpaper {
+    background-image: url("../img/mains.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
