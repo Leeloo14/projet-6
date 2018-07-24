@@ -1,0 +1,7 @@
+{
+    "name": "anneg/projet-6",
+    "description": "projet 6",
+    "require": {
+        "twig/twig": "^2.0"
+    }
+}
