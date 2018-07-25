@@ -1,7 +1,12 @@
 {
-    "name": "anneg/projet-6",
-    "description": "projet 6",
-    "require": {
-        "twig/twig": "^2.0"
+  "name": "anneg/projet-6",
+  "description": "projet 6",
+  "require": {
+    "twig/twig": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Projet6\\": "src/"
     }
+  }
 }

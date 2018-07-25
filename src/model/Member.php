@@ -23,9 +23,6 @@ class Member
             $this->email = $memberData['email'];
         }
     }
-
-    // Getters //
-
     public function getId()
     {
         return $this->id;
@@ -42,9 +39,6 @@ class Member
     {
         return $this->email;
     }
-
-    // SETTERS //
-
     public function setId($id)
     {
         $this->id = $id;
@@ -62,4 +56,3 @@ class Member
         $this->email = $email;
     }
 }
-

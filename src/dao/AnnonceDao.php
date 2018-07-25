@@ -3,10 +3,10 @@
 namespace Projet6\Dao;
 
 use Projet6\Model\Annonce;
+require_once 'BaseDao';
 
 class AnnonceDao extends BaseDao
 {
-
     public function createAnnonce($title, $content)
     {
         $db = $this->dbConnect();
@@ -14,8 +14,6 @@ class AnnonceDao extends BaseDao
         $affectedLines = $annonces->execute(array($title, $content));
         return $affectedLines;
     }
-
-
     public function getAnnonceById($id)
     {
         $db = $this->dbConnect();
@@ -24,8 +22,6 @@ class AnnonceDao extends BaseDao
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
     }
-
-
     public function getannonce($annonceId)
     {
         $db = $this->dbConnect();
@@ -34,8 +30,6 @@ class AnnonceDao extends BaseDao
         $annonceData = $req->fetch();
         return new Annonce($annonceData);   
     }
-
-
     public function getAllAnnonces()
     {
         $db = $this->dbConnect();
@@ -44,18 +38,14 @@ class AnnonceDao extends BaseDao
         $annoncesDB = $req->fetchAll();
         $annonces = [];
         foreach ($annoncesDB as $annonceDB) {
-            array_push($posts, new Post($annonceDB));
+            array_push($annonces, new Annonce($annonceDB));
         }
         return $annonces;
     }
-
     public function deleteAnnonce($id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');
         $req->execute(array($id));
     }
-
-
-
 }
