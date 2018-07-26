@@ -11,6 +11,7 @@ class Annonce
     private $tel;
     private $email;
     private $city;
+    private $author;
     private $creationDate;
 
     function __construct($annonceData)
@@ -38,6 +39,9 @@ class Annonce
         }
         if (isset($annonceData['city'])) {
             $this->city = $annonceData['city'];
+        }
+        if (isset($annonceData['author'])) {
+            $this->author = $annonceData['author'];
         }
         if (isset($annonceData['creation_date'])) {
             $this->creationDate = date_create_from_format('Y-m-d H:i:s', $annonceData['creation_date']);
@@ -82,6 +86,10 @@ class Annonce
     {
         return $this->city;
     }
+    public function getAuthor()
+    {
+        return $this->author;
+    }
     public function getCreationDate()
     {
         return $this->creationDate;
@@ -125,6 +133,10 @@ class Annonce
     public function setCity($city)
     {
         $this->city = $city;
+    }
+    public function setAuthor($author)
+    {
+        $this->author = $author;
     }
     public function setCreationDate($creationDate)
     {

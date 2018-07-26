@@ -21,9 +21,9 @@ class BackendController
     }
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content,$typeof, $tel , $email, $city)
+    function addAnnonce($title, $content,$typeof, $tel , $email, $city, $author)
     {
-        $affectedLines = $this->annonceDao->createAnnonce($title, $content,$typeof, $tel, $email, $city);
+        $affectedLines = $this->annonceDao->createAnnonce($title, $content,$typeof, $tel, $email, $city, $author);
         ;
 
         if ($affectedLines === false) {

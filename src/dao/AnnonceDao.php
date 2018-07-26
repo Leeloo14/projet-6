@@ -9,11 +9,11 @@ require_once 'BaseDao';
 class AnnonceDao extends BaseDao
 {
     /**Creer une nouvelle annonce*/
-    public function createAnnonce($title, $content, $typeof, $tel, $email, $city)
+    public function createAnnonce($title, $content, $typeof, $tel, $email, $city, $author)
     {
         $db = $this->dbConnect();
-        $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, creation_date) VALUES(?, ?,?,?,?,?, NOW())');
-        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city));
+        $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date) VALUES(?, ?,?,?,?,?,?, NOW())');
+        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author));
         return $affectedLines;
     }
 
@@ -21,7 +21,7 @@ class AnnonceDao extends BaseDao
     public function getAnnonceById($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city,  creation_date FROM annonces WHERE id = ' . $id);
+        $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city, author , creation_date FROM annonces WHERE id = ' . $id);
         $req->execute();
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
