@@ -9,11 +9,11 @@ require_once 'BaseDao';
 class AnnonceDao extends BaseDao
 {
     /**Creer une nouvelle annonce*/
-    public function createAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
+    public function createAnnonce($title, $content, $typeof, $tel, $email, $city)
     {
         $db = $this->dbConnect();
-        $annonces = $db->prepare('INSERT INTO annonces (member_id,title, content,typeof , tel ,email,city,  creation_date) VALUES(?,?, ?,?,?,?,?, NOW())');
-        $affectedLines = $annonces->execute(array($id,$title, $content, $typeof, $tel, $email, $city));
+        $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, creation_date) VALUES(?, ?,?,?,?,?, NOW())');
+        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city));
         return $affectedLines;
     }
 

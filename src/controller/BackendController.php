@@ -21,13 +21,15 @@ class BackendController
     }
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($memberId, $title, $content, $typeof, $tel, $email, $city)
+    function addAnnonce($title, $content,$typeof, $tel , $email, $city)
     {
-        $affectedLines = $this->annonceDao->createAnnonce($memberId, $title, $content, $typeof, $tel, $email, $city);;
+        $affectedLines = $this->annonceDao->createAnnonce($title, $content,$typeof, $tel, $email, $city);
+        ;
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
-        } else {
+        }
+        else {
             header('location: index.php');
         }
     }
@@ -58,7 +60,7 @@ class BackendController
         $affectedLines = $this->annonceDao->updatePost($id, $title, $content, $typeof, $tel, $email, $city);
         $annonces = $annonceDao->getMyAnnonces();
         if ($affectedLines === false) {
-            throw new \Exception('Impossible de modifier le post!');
+            throw new \Exception('Impossible de modifier l/annonce!');
         } else {
             header('location: index.php?action=displayPanelUser');
         }
