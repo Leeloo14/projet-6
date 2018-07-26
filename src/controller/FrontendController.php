@@ -19,12 +19,36 @@ class FrontendController
         $this->memberDao = new MemberDao();
     }
 
+    /**Home*/
     function listAnnonces($template)
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
-        echo $template->render('frontend/list-annonces-view.html.twig', array('annonces' => $annonces));
+
+        echo $template->render('frontend/list-annonces-view.html.twig');
     }
 
+    /**Toutes les annonces */
+    function listAnnoncesAll($template)
+    {
+        $annonces = $this->annonceDao->getAllAnnonces();
+        echo $template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
+    }
+
+    /**Annonce je recherche */
+    function listAnnoncesSearch($template)
+    {
+        $annonceDao = new AnnonceDao();
+        $annonces = $annonceDao->getTypeOfAnnoncesSearch();
+        echo $template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces));
+    }
+    /**Annonce je propose */
+    function listAnnoncesGive($template)
+    {
+        $annonceDao = new AnnonceDao();
+        $annonces = $annonceDao->getTypeOfAnnoncesGive();
+        echo $template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
+    }
+
+    /** Retourne une annonce */
     function annonce($template)
     {
         $annonces = $this->annonceDao->getAllAnnonces();
@@ -32,27 +56,5 @@ class FrontendController
         echo $template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
 
-    /** a bouger dans backend */
-    function displayNewAnnonce($template)
-    {
-
-        echo $template->render('frontend/new-annonce-view.html.twig');
-
-    }
-    /** permet d'afficjer la page d'inscription */
-    function displayInscription($template)
-    {
-        echo $template->render('frontend/inscription.html.twig');
-    }
-    function inscription($pseudo, $pass, $email)
-    {
-        $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
-        if ($affectedLines === false) {
-            throw new \Exception('Tous les champs ne sont pas complétés');
-        } else {
-            echo "votre comptre à bien été crée";
-            header('location: index.php');
-        }
-    }
 
 }

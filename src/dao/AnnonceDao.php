@@ -3,17 +3,21 @@
 namespace Projet6\Dao;
 
 use Projet6\Model\Annonce;
+
 require_once 'BaseDao';
 
 class AnnonceDao extends BaseDao
 {
-    public function createAnnonce($title, $content)
+    /**Creer une nouvelle annonce*/
+    public function createAnnonce($id, $title, $content, $typeof, $tel, $email)
     {
         $db = $this->dbConnect();
-        $annonces = $db->prepare('INSERT INTO annonces(title, content, creation_date) VALUES(?, ?, NOW())');
-        $affectedLines = $annonces->execute(array($title, $content));
+        $annonces = $db->prepare('INSERT INTO annonces (member_id,title, content,typeof , tel ,email, creation_date) VALUES(?,?, ?,?,?,?, NOW())');
+        $affectedLines = $annonces->execute(array($id, $title, $content, $typeof, $tel, $email));
         return $affectedLines;
     }
+
+    /**Retourne une annonce suivant son id*/
     public function getAnnonceById($id)
     {
         $db = $this->dbConnect();
@@ -22,18 +26,22 @@ class AnnonceDao extends BaseDao
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
     }
+
+    /**retourne un épisode*/
     public function getannonce($annonceId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, content, creation_date FROM annonces WHERE id =' . $annonceId);
         $req->execute();
         $annonceData = $req->fetch();
-        return new Annonce($annonceData);   
+        return new Annonce($annonceData);
     }
+
+    /**Retourne toutes les annonces*/
     public function getAllAnnonces()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM annonces ORDER BY creation_date LIMIT 0, 5');
+        $req = $db->prepare('SELECT * FROM annonces ORDER BY creation_date');
         $req->execute();
         $annoncesDB = $req->fetchAll();
         $annonces = [];
@@ -42,10 +50,58 @@ class AnnonceDao extends BaseDao
         }
         return $annonces;
     }
+
+    /**Retourne les annonces type recherche*/
+    public function getTypeOfAnnoncesSearch()
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM annonces WHERE typeof = "recherche"');
+        $req->execute();
+        $annoncesDB = $req->fetchAll();
+        $annonces = [];
+        foreach ($annoncesDB as $annonceDB) {
+            array_push($annonces, new Annonce($annonceDB));
+        }
+        return $annonces;
+    }
+
+    /**Retourne les annonces type */
+    public function getTypeOfAnnoncesGive()
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM annonces WHERE typeof = "propose"');
+        $req->execute();
+        $annoncesDB = $req->fetchAll();
+        $annonces = [];
+        foreach ($annoncesDB as $annonceDB) {
+            array_push($annonces, new Annonce($annonceDB));
+        }
+        return $annonces;
+    }
+
+    /** permet de supprimer un épisode */
     public function deleteAnnonce($id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');
         $req->execute(array($id));
     }
+    /** renvoie la liste des annonces liées a un utilisateur */
+    /**A définir*/
+    public function getMyAnnonces()
+    {
+        $db = $this->dbConnect();
+
+    }
+
+    /** permet de mettre à jour une annonce */
+    public function updateAnnonce($id, $title, $content, $typeof, $tel, $email)
+    {
+        $db = $this->dbConnect();
+        $annonce = $db->prepare('UPDATE annonces SET title = ?, content = ?,typeof =?, tel = ?, email = ? WHERE id = ?');
+        $affectedLine = $annonce->execute(array($title, $content, $typeof, $tel, $email));
+        return $affectedLine;
+    }
+
+
 }

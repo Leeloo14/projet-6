@@ -5,16 +5,21 @@ namespace Projet6\Model;
 class Annonce
 {
     private $id;
+    private $member_id;
     private $title;
     private $content;
     private $creationDate;
-    private $type;
+    private $typeof;
     private $tel;
+    private $email;
 
     function __construct($annonceData)
     {
         if (isset($annonceData['id'])) {
             $this->id = $annonceData['id'];
+        }
+        if (isset($annonceData['member_id'])) {
+            $this->member_Id = $annonceData['member_id'];
         }
         if (isset($annonceData['title'])) {
             $this->title = $annonceData['title'];
@@ -22,8 +27,8 @@ class Annonce
         if (isset($annonceData['content'])) {
             $this->content = $annonceData['content'];
         }
-        if (isset($annonceData['type'])) {
-            $this->type = $annonceData['type'];
+        if (isset($annonceData['typeof'])) {
+            $this->typeof = $annonceData['typeof'];
 
         }
         if (isset($annonceData['tel'])) {
@@ -32,12 +37,19 @@ class Annonce
         if (isset($annonceData['creation_date'])) {
             $this->creationDate = date_create_from_format('Y-m-d H:i:s', $annonceData['creation_date']);
         }
-
+        if (isset($annonceData['email'])) {
+            $this->email = $annonceData['email'];
+        }
     }
 
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getMemberId()
+    {
+        return $this->member_id;
     }
 
     public function getTitle()
@@ -55,9 +67,9 @@ class Annonce
         return $this->creationDate;
     }
 
-    public function getType()
+    public function getTypeof()
     {
-        return $this->type;
+        return $this->typeof;
     }
 
     public function getTel()
@@ -65,9 +77,19 @@ class Annonce
         return $this->tel;
     }
 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function setMemberId($member_id)
+    {
+        $this->member_id = $member_id;
     }
 
     public function setTitle($title)
@@ -85,14 +107,19 @@ class Annonce
         $this->creationDate = $creationDate;
     }
 
-    public function setType($type)
+    public function setTypeof($typeof)
     {
-        $this->type = $type;
+        $this->typeof = $typeof;
     }
 
     public function setTel($tel)
     {
         $this->tel = $tel;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
 

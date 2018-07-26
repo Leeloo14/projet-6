@@ -13,11 +13,12 @@ class SessionService
     function storeCookie()
     {
         $endTime = time() + 3600; // Delai d'expiration de la session du client
-        setcookie('projet6', 'connexion-pr4', $endTime); // Stock un cookie qui contient le temps d'expiration
+        setcookie('projet6', 'connexion-pr6', $endTime); // Stock un cookie qui contient le temps d'expiration
     }
 
-    function disconnect(){
-        setcookie('projet6', 'connexion-pr4', time() - 1);
+    function disconnect()
+    {
+        setcookie('projet6', 'connexion-pr6', time() - 1);
     }
 
 }

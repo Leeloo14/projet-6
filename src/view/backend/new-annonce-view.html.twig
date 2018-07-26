@@ -1,4 +1,4 @@
-{% extends "frontend/template.html.twig" %}
+{% extends "backend/template2.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
@@ -10,11 +10,14 @@
     <div class="global-container">
 
         <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
+           <div class="text-center">
+
             <h2>créer une nouvelle annonce</h2>
 
+           </div>
             <form action="index.php" method="post">
                 <div>
-                    <input type="hidden" id="action" name="action" value="createAnnonce"/>
+                    <input  type="hidden" id="action" name="action" value="createAnnonce"/>
                 </div>
                 <div>
                     <label for="title">titre</label><br/>
@@ -23,6 +26,17 @@
                 <div>
                     <label for="tel">téléphone</label><br/>
                     <input id="tel" name="tel" class="form-control">
+                </div>
+                <div>
+                    <label for="email">email</label><br/>
+                    <input id="email" name="email" class="form-control">
+                </div>
+                <div>
+                    <label for="typeof">type</label><br/>
+                    <select id="typeof" name="typeof" class="form-control">
+                        <option value="recherche">Je recherche</option>
+                        <option value="propose">Je propose</option>
+                    </select>
                 </div>
                 <div>
                     <label for="content">texte</label><br/>

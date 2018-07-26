@@ -11,9 +11,11 @@ class BaseDao
         $username = $dbInfo["user"] ?? 'root';
         $password = $dbInfo["pass"] ?? '';
         $db = $dbInfo["path"] ? substr($dbInfo["path"], 1) : 'projet6';
-        return new \PDO('mysql:host='. $server .';dbname='. $db .';charset=utf8', $username, $password);
+        return new \PDO('mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8', $username, $password);
     }
-    protected function Q($data){
+
+    protected function Q($data)
+    {
         return "'" . $data . "'";
     }
 }

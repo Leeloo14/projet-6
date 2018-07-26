@@ -5,6 +5,7 @@ require_once 'BaseDao';
 
 class MemberDao extends BaseDao
 {
+    /** Permet de creer un nouveau membre*/
     public function createMember($pseudo, $pass, $email)
     {
         $db = $this->dbConnect();
@@ -13,6 +14,7 @@ class MemberDao extends BaseDao
         return $affectedLines;
     }
 
+    /** Permet de recuperer un utilisateur pour la connexion*/
     public function getUser($mailconnect, $mdpconnect)
     {
         $db = $this->dbConnect();

@@ -15,13 +15,19 @@
             <h3>
                 {{ annonce.title|escape }}
             </h3>
+            <h6>Publiée par {{ annonce.email|raw }}</h6>
             <div class="pb-3">
-            <span class="font-italic">{{ annonce.creationDate|date("d/m/Y H:m") }}</span>
+            <span class="font-italic">Le {{ annonce.creationDate|date("d/m/Y H:m") }}</span>
+            </div>
+            <div class="pb-3">
+                <h1>{{ annonce.tel|raw }}</h1>
             </div>
             <div class="pt-3 border">
                 <p>
                     {{ annonce.content|raw }}
                 </p>
+            </div>
+            <div class="pb-3">
 
             </div>
 

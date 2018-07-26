@@ -1,18 +1,22 @@
-{% extends "frontend/template.html.twig" %}
+{% extends "backend/template2.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
-    <title>Bienvenue dans votre espace personnel</title>
+    <title>espace personnel</title>
 {% endblock %}
 
 {% block body %}
 
 
 
-    <div class="container mt-3 mb-3 text-center">
+    <div class="container-white container pt-3 pb-3 mt-3 mb-3 text-center rounded">
+        <a class=" btn btn-success " href="index.php?action=displayNewAnnonce">Ajouter une annonce</a>
 
     </div>
+    <div class="container-white container pt-3 pb-3 mt-3 mb-3 text-center rounded">
+        <a class=" btn btn-success " href="index.php?action=displayMyAnnonces">Mes annonces</a>
 
+    </div>
 {% endblock %}
 
 
