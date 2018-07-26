@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f50bfba-f9fd-4b2c-90fe-621ba9736891" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/frontend/connexion.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/connexion.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/frontend/inscription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/inscription.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,66 +21,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
-              <folding>
-                <element signature="e#44#86#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FrontendController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/FrontendController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-              <folding>
-                <element signature="e#38#65#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nav.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/frontend/nav.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new-annonce-view.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/backend/new-annonce-view.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackendController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/BackendController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="25" column="112" selection-start-line="25" selection-start-column="112" selection-end-line="25" selection-end-column="112" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnnonceDao.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/AnnonceDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="23" column="88" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Annonce.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Annonce.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -88,17 +33,67 @@
       <file leaf-file-name="list-annonces-all.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-all.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="442">
+              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="annonce-view.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="connexion.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/frontend/connexion.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projet6.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/projet6.sql">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="annonce-view.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+            <state relative-caret-position="493">
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inscription.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/frontend/inscription.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list-annonces-give-view.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list-annonces-search-view.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="30" column="143" selection-start-line="30" selection-start-column="143" selection-end-line="30" selection-end-column="143" />
             </state>
           </provider>
         </entry>
@@ -106,8 +101,8 @@
       <file leaf-file-name="list-annonces-view.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+            <state relative-caret-position="357">
+              <caret line="21" column="38" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -125,6 +120,8 @@
       <find>displayPanelU</find>
       <find>type</find>
       <find>displayP</find>
+      <find>focus</find>
+      <find>headin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,28 +132,22 @@
       <list>
         <option value="$PROJECT_DIR$/src/dao/PostDao.java" />
         <option value="$PROJECT_DIR$/src/dao/PostDao.php" />
-        <option value="$PROJECT_DIR$/src/view/frontend/connexion.html.twig" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/composer.lock" />
         <option value="$PROJECT_DIR$/src/view/frontend/new-annonce-view.html.twig" />
-        <option value="$PROJECT_DIR$/src/view/frontend/inscription.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/user-view.html.twig" />
         <option value="$PROJECT_DIR$/src/view/backend/template2.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/template.html.twig" />
         <option value="$PROJECT_DIR$/src/view/backend/nav2.html.twig" />
         <option value="$PROJECT_DIR$/src/view/backend/user-view.html.twig" />
         <option value="$PROJECT_DIR$/src/view/backend/my-annonces.html.twig" />
-        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/acceuil.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/home.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-all" />
-        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-all.html.twig" />
-        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig" />
         <option value="$PROJECT_DIR$/src/dao/BaseDao" />
         <option value="$PROJECT_DIR$/src/dao/MemberDao.php" />
         <option value="$PROJECT_DIR$/src/model/Member.php" />
         <option value="$PROJECT_DIR$/src/services/SessionService.php" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-city.html.twig" />
         <option value="$PROJECT_DIR$/src/controller/FrontendController.php" />
@@ -166,7 +157,13 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/src/view/backend/new-annonce-view.html.twig" />
         <option value="$PROJECT_DIR$/src/dao/AnnonceDao.php" />
+        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-all.html.twig" />
+        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig" />
         <option value="$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig" />
+        <option value="$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/src/view/frontend/inscription.html.twig" />
+        <option value="$PROJECT_DIR$/src/view/frontend/connexion.html.twig" />
       </list>
     </option>
   </component>
@@ -307,6 +304,9 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\testAnne\projet6\script" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\testAnne\projet6\src\view\backend" />
     </key>
@@ -390,15 +390,16 @@
       <updated>1532438801442</updated>
       <workItem from="1532438802655" duration="2730000" />
       <workItem from="1532441685854" duration="5131000" />
-      <workItem from="1532461556496" duration="60171000" />
+      <workItem from="1532461556496" duration="63506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68032000" />
+    <option name="totallyTimeSpent" value="71367000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -413,7 +414,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32943678" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -436,13 +437,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -547,24 +541,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/inscription.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/backend/template2.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/connexion.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -641,27 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="18" lean-forward="true" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-city.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -673,13 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-all.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
@@ -733,15 +685,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        <state relative-caret-position="357">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-search-view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="30" column="143" selection-start-line="30" selection-start-column="143" selection-end-line="30" selection-end-column="143" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+        <state relative-caret-position="493">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-give-view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-all.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/projet6.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/frontend/inscription.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="83" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/frontend/connexion.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
