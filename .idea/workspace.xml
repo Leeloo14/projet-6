@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f50bfba-f9fd-4b2c-90fe-621ba9736891" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/BackendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BackendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AnnonceDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AnnonceDao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Annonce.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Annonce.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/backend/new-annonce-view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/backend/new-annonce-view.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="400">
-              <caret line="102" column="19" lean-forward="true" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
+              <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
               <folding>
                 <element signature="e#44#86#0#PHP" expanded="true" />
               </folding>
@@ -37,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/controller/FrontendController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
-              <caret line="60" column="44" lean-forward="true" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
               <folding>
                 <element signature="e#38#65#0#PHP" expanded="true" />
               </folding>
@@ -85,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/model/Annonce.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2448">
-              <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
+              <caret line="144" selection-start-line="144" selection-end-line="144" />
             </state>
           </provider>
         </entry>
@@ -102,11 +97,8 @@
       <file leaf-file-name="annonce-view.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
-              <folding>
-                <element signature="e#1498#1505#1#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="226">
+              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -115,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -398,16 +390,15 @@
       <updated>1532438801442</updated>
       <workItem from="1532438802655" duration="2730000" />
       <workItem from="1532441685854" duration="5131000" />
-      <workItem from="1532461556496" duration="59202000" />
+      <workItem from="1532461556496" duration="60171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67063000" />
+    <option name="totallyTimeSpent" value="68032000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -702,7 +693,7 @@
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
-          <caret line="102" column="19" lean-forward="true" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
+          <caret line="102" column="19" selection-start-line="102" selection-start-column="19" selection-end-line="102" selection-end-column="19" />
           <folding>
             <element signature="e#44#86#0#PHP" expanded="true" />
           </folding>
@@ -719,7 +710,7 @@
     <entry file="file://$PROJECT_DIR$/src/controller/FrontendController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
-          <caret line="60" column="44" lean-forward="true" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
           <folding>
             <element signature="e#38#65#0#PHP" expanded="true" />
           </folding>
@@ -736,24 +727,21 @@
     <entry file="file://$PROJECT_DIR$/src/model/Annonce.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2448">
-          <caret line="144" lean-forward="true" selection-start-line="144" selection-end-line="144" />
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/list-annonces-view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/frontend/annonce-view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
-          <folding>
-            <element signature="e#1498#1505#1#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="226">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
         </state>
       </provider>
     </entry>
