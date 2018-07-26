@@ -47,6 +47,12 @@ class FrontendController
         $annonces = $annonceDao->getTypeOfAnnoncesGive();
         echo $template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
     }
+    /**Retoune la page pour selectionner une annonce par ville disponible*/
+    function listAnnoncesCity($template)
+    {
+
+        echo $template->render('frontend/list-annonces-city.html.twig');
+    }
 
     /** Retourne une annonce */
     function annonce($template)

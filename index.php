@@ -26,6 +26,9 @@ try {
     if (isset($_GET["action"]) && $_GET['action'] == 'listAnnoncesAll') {
         $frontendController->listAnnoncesAll($twig);
     }
+    if (isset($_GET["action"]) && $_GET['action'] == 'listAnnoncesCity') {
+        $frontendController->listAnnoncesCity($twig);
+    }
     if (isset($_GET["action"]) && $_GET['action'] == 'post') {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
             $frontendController->annonce($twig);
@@ -90,8 +93,8 @@ try {
     }
 
     if (isset($_POST['action']) && $_POST['action'] == 'createAnnonce') {
-        if (!empty($_POST['title']) && !empty($_POST['content'])&& !empty($_POST['typeof']) && !empty($_POST['tel'])&& !empty($_POST['email'])) {
-            $backendController->addAnnonce($_GET['id'],$_POST['title'], $_POST['content'],$_POST['typeof'],$_POST['tel'],$_POST['email']);
+        if (!empty($_POST['title']) && !empty($_POST['content'])&& !empty($_POST['typeof']) && !empty($_POST['tel'])&& !empty($_POST['email'])&& !empty($_POST['city'])) {
+            $backendController->addAnnonce($_GET['id'],$_POST['title'], $_POST['content'],$_POST['typeof'],$_POST['tel'],$_POST['email'],$_POST['city']);
         } else {
             throw new Exception('2 Tous les champs ne sont pas remplis !');
         }

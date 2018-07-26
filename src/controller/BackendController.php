@@ -21,9 +21,9 @@ class BackendController
     }
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($memberId, $title, $content, $typeof, $tel, $email)
+    function addAnnonce($memberId, $title, $content, $typeof, $tel, $email, $city)
     {
-        $affectedLines = $this->annonceDao->createAnnonce($memberId, $title, $content, $typeof, $tel, $email);;
+        $affectedLines = $this->annonceDao->createAnnonce($memberId, $title, $content, $typeof, $tel, $email, $city);;
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
@@ -52,10 +52,10 @@ class BackendController
     }
 
     /** permet valider les modifications d'une annonce existante */
-    function replaceAnnonce($id, $title, $content, $typeof, $tel, $email)
+    function replaceAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
         $annonceDao = new AnnonceDao();
-        $affectedLines = $this->annonceDao->updatePost($id, $title, $content, $typeof, $tel, $email);
+        $affectedLines = $this->annonceDao->updatePost($id, $title, $content, $typeof, $tel, $email, $city);
         $annonces = $annonceDao->getMyAnnonces();
         if ($affectedLines === false) {
             throw new \Exception('Impossible de modifier le post!');

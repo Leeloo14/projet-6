@@ -9,11 +9,11 @@ require_once 'BaseDao';
 class AnnonceDao extends BaseDao
 {
     /**Creer une nouvelle annonce*/
-    public function createAnnonce($id, $title, $content, $typeof, $tel, $email)
+    public function createAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
         $db = $this->dbConnect();
-        $annonces = $db->prepare('INSERT INTO annonces (member_id,title, content,typeof , tel ,email, creation_date) VALUES(?,?, ?,?,?,?, NOW())');
-        $affectedLines = $annonces->execute(array($id, $title, $content, $typeof, $tel, $email));
+        $annonces = $db->prepare('INSERT INTO annonces (member_id,title, content,typeof , tel ,email,city,  creation_date) VALUES(?,?, ?,?,?,?,?, NOW())');
+        $affectedLines = $annonces->execute(array($id,$title, $content, $typeof, $tel, $email, $city));
         return $affectedLines;
     }
 
@@ -21,7 +21,7 @@ class AnnonceDao extends BaseDao
     public function getAnnonceById($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, creation_date FROM annonces WHERE id = ' . $id);
+        $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city,  creation_date FROM annonces WHERE id = ' . $id);
         $req->execute();
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
@@ -31,7 +31,7 @@ class AnnonceDao extends BaseDao
     public function getannonce($annonceId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, creation_date FROM annonces WHERE id =' . $annonceId);
+        $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city,  creation_date FROM annonces WHERE id =' . $annonceId);
         $req->execute();
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
@@ -95,11 +95,11 @@ class AnnonceDao extends BaseDao
     }
 
     /** permet de mettre à jour une annonce */
-    public function updateAnnonce($id, $title, $content, $typeof, $tel, $email)
+    public function updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
         $db = $this->dbConnect();
-        $annonce = $db->prepare('UPDATE annonces SET title = ?, content = ?,typeof =?, tel = ?, email = ? WHERE id = ?');
-        $affectedLine = $annonce->execute(array($title, $content, $typeof, $tel, $email));
+        $annonce = $db->prepare('UPDATE annonces SET title = ?, content = ?,typeof =?, tel = ?, email = ?, city = ? WHERE id = ?');
+        $affectedLine = $annonce->execute(array($title, $content, $typeof, $tel, $email, $city));
         return $affectedLine;
     }
 

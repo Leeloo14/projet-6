@@ -12,6 +12,7 @@ class Annonce
     private $typeof;
     private $tel;
     private $email;
+    private $city;
 
     function __construct($annonceData)
     {
@@ -39,6 +40,9 @@ class Annonce
         }
         if (isset($annonceData['email'])) {
             $this->email = $annonceData['email'];
+        }
+        if (isset($annonceData['city'])) {
+            $this->city = $annonceData['city'];
         }
     }
 
@@ -81,6 +85,10 @@ class Annonce
     {
         return $this->email;
     }
+    public function getCity()
+    {
+        return $this->city;
+    }
 
     public function setId($id)
     {
@@ -120,6 +128,10 @@ class Annonce
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 }
 
