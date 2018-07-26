@@ -5,61 +5,68 @@ namespace Projet6\Controller;
 use Projet6\dao\AnnonceDao;
 use Projet6\dao\MemberDao;
 use Projet6\Services\SessionService;
+use Twig_Environment;
+use Twig_Extension_Debug;
+use Twig_Loader_Filesystem;
 
 class FrontendController
 {
     private $annonceDao;
     private $memberDao;
     private $sessionService;
+    private $template;
 
     function __construct()
     {
         $this->annonceDao = new AnnonceDao();
         $this->sessionService = new SessionService();
         $this->memberDao = new MemberDao();
+        $this->template = new Twig_Environment(new Twig_Loader_Filesystem(__DIR__ . '/../view'), array('debug' => true));
+        $this->template->addExtension(new Twig_Extension_Debug());
     }
 
     /**Home*/
-    function listAnnonces($template)
+    function listAnnonces()
     {
-
-        echo $template->render('frontend/list-annonces-view.html.twig');
+        echo $this->template->render('frontend/list-annonces-view.html.twig');
     }
 
     /**Toutes les annonces */
-    function listAnnoncesAll($template)
+    function listAnnoncesAll()
     {
         $annonces = $this->annonceDao->getAllAnnonces();
-        echo $template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
+        echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
     }
 
     /**Annonce je recherche */
-    function listAnnoncesSearch($template)
+    function listAnnoncesSearch()
     {
         $annonceDao = new AnnonceDao();
         $annonces = $annonceDao->getTypeOfAnnoncesSearch();
-        echo $template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces));
+        echo $this->template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces));
     }
+
     /**Annonce je propose */
-    function listAnnoncesGive($template)
+    function listAnnoncesGive()
     {
         $annonceDao = new AnnonceDao();
         $annonces = $annonceDao->getTypeOfAnnoncesGive();
-        echo $template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
+        echo $this->template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
     }
+
     /**Retoune la page pour selectionner une annonce par ville disponible*/
-    function listAnnoncesCity($template)
+    function listAnnoncesCity()
     {
 
-        echo $template->render('frontend/list-annonces-city.html.twig');
+        echo $this->template->render('frontend/list-annonces-city.html.twig');
     }
 
     /** Retourne une annonce */
-    function annonce($template)
+    function annonce($annonceId)
     {
         $annonces = $this->annonceDao->getAllAnnonces();
-        $annonce = $this->annonceDao->getAnnonceById($_GET['id']);
-        echo $template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        $annonce = $this->annonceDao->getAnnonceById($annonceId);
+        echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
 
 

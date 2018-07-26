@@ -7,7 +7,7 @@
 {% block body %}
     <div class="global-container">
         <div class="ml-2 mt-3">
-            <p><a class="text-white" href="index.php">Retour à l'accueil</a></p>
+            <p><a class="text-white" href="/">Retour à l'accueil</a></p>
         </div>
 
         <div class="container container-white pt-3 pb-3 rounded ">
@@ -18,7 +18,7 @@
 
 
                 <p class="font-italic text-right">Publiée le {{ annonce.creationDate|date("d/m/Y") }}</p>
-                <p >localisation: {{ annonce.city|raw }}</p> </h6>
+                <p >localisation: {{ annonce.city|raw }}</p>
 
 
             <div class="pt-3 border">

@@ -28,8 +28,8 @@
                             <tr >
                                 <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
                                 <td>{{ annonce.typeof }}</td>
-                                <td><a class=" btn btn-info " href="index.php?action=post&amp;id={{ annonce.id }}">Consulter l'annonce</a></td>
-
+                                <td><a class="text-dark" href="/annonces/{{ annonce.id }}">{{ annonce.title|escape }}</a></td>
+                                <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></td>
                             </tr>
 
                         {% endfor %}

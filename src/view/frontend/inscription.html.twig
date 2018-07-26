@@ -8,15 +8,15 @@
 {% block body %}
 
 
-<div class="wrapper">
-    <form class="form-signin" method="POST" action="index.php?action=forminscription" >
-        <h2 class="form-signin-heading">Créer mon compte</h2>
-        <input type="text" class="form-control mb-2" id="pseudo" name="pseudo" placeholder="Votre pseudo" required="" autofocus="" />
-        <input type="email" class="form-control  mb-2" id="mail" name="mail" placeholder="Votre e-mail" required=""/>
-        <input type="email" class="form-control  mb-2" id="mail2" name="mail2" placeholder="Confirmer votre e-mail" required=""/>
-        <input type="password" class="form-control mb-2" id="mdp" name="mdp" placeholder="Votre motde passe" required=""/>
-        <input type="password" class="form-control  mb-2" id="mdp2" name="mdp2" placeholder="Confirmez votre motde passe" required=""/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Je m'inscris</button>
-    </form>
-</div>
+    <div class="wrapper">
+        <form class="form-signin" method="POST" action="index.php?action=forminscription" >
+            <h2 class="form-signin-heading">Créer mon compte</h2>
+            <input type="text" class="form-control mb-2" id="pseudo" name="pseudo" placeholder="Votre pseudo" required="" autofocus="" />
+            <input type="email" class="form-control  mb-2" id="mail" name="mail" placeholder="Votre e-mail" required=""/>
+            <input type="email" class="form-control  mb-2" id="mail2" name="mail2" placeholder="Confirmer votre e-mail" required=""/>
+            <input type="password" class="form-control mb-2" id="mdp" name="mdp" placeholder="Votre motde passe" required=""/>
+            <input type="password" class="form-control  mb-2" id="mdp2" name="mdp2" placeholder="Confirmez votre motde passe" required=""/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Je m'inscris</button>
+        </form>
+    </div>
 {% endblock %}

@@ -5,6 +5,9 @@ namespace Projet6\Controller;
 use Projet6\Dao\AnnonceDao;
 use Projet6\Dao\MemberDao;
 use Projet6\Services\SessionService;
+use Twig_Environment;
+use Twig_Extension_Debug;
+use Twig_Loader_Filesystem;
 
 class BackendController
 {
@@ -12,12 +15,15 @@ class BackendController
     private $memberDao;
     private $sessionService;
     private $annonceDao;
+    private $template;
 
     function __construct()
     {
         $this->annonceDao = new AnnonceDao();
         $this->memberDao = new MemberDao();
         $this->sessionService = new SessionService();
+        $this->template = new Twig_Environment(new Twig_Loader_Filesystem(__DIR__ . '/../view'), array('debug' => true));
+        $this->template->addExtension(new Twig_Extension_Debug());
     }
 
     /** Permet de creer une nouvelle annonce*/
@@ -113,20 +119,20 @@ class BackendController
     }
 
     /** permet d'afficher la page de connexion*/
-    function displayUserConnexion($template)
+    function displayUserConnexion()
     {
         if ($this->sessionService->isClientAuthorized()) {
             header('location: index.php?action=displayPanelUser');
         } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"];
-            echo $template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
+            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
+            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
         }
     }
 
     /** permet d'afficher la page d'inscription*/
-    function displayInscription($template)
+    function displayInscription()
     {
-        echo $template->render('frontend/inscription.html.twig');
+        echo $this->template->render('frontend/inscription.html.twig');
     }
 
     /** permet de renvoyer l'utilisateur à la page d'accueil si inscription avec succés*/

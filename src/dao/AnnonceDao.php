@@ -4,8 +4,6 @@ namespace Projet6\Dao;
 
 use Projet6\Model\Annonce;
 
-require_once 'BaseDao';
-
 class AnnonceDao extends BaseDao
 {
     /**Creer une nouvelle annonce*/

@@ -1,7 +1,6 @@
 <?php
 
 namespace Projet6\Dao;
-require_once 'BaseDao';
 
 class MemberDao extends BaseDao
 {
