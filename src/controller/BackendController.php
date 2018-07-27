@@ -47,7 +47,7 @@ class BackendController
         $annonceDao->deleteAnnonce($id);
         /*a définir*/
         $annonces = $annonceDao->getMyAnnonces();
-        echo $template->render('backend/my-annonces.html.twig', array('annonces' => $annonces));
+        echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces));
 
     }
 
@@ -56,14 +56,14 @@ class BackendController
     {
         $annonceDao = new AnnonceDao();
         $annonce = $annonceDao->getannonce($annonceId);
-        echo $template->render('backend/user-modify-annonce.html.twig', array('annonce' => $annonce));
+        echo $this->template->render('backend/user-modify-annonce.html.twig', array('annonce' => $annonce));
     }
 
     /** permet valider les modifications d'une annonce existante */
     function replaceAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
         $annonceDao = new AnnonceDao();
-        $affectedLines = $this->annonceDao->updatePost($id, $title, $content, $typeof, $tel, $email, $city);
+        $affectedLines = $this->annonceDao->updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city);
         $annonces = $annonceDao->getMyAnnonces();
         if ($affectedLines === false) {
             throw new \Exception('Impossible de modifier l/annonce!');
@@ -93,10 +93,10 @@ class BackendController
     }
 
     /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
-    function displayUserPanel($template)
+    function displayUserPanel()
     {
         if ($this->sessionService->isClientAuthorized()) {
-            echo $template->render('backend/user-view.html.twig');
+            echo $this->template->render('backend/user-view.html.twig');
         } else {
             header('location: index.php?action=displayConnexion');
         }
@@ -106,7 +106,7 @@ class BackendController
     function displayNewAnnonce($template)
     {
 
-        echo $template->render('backend/new-annonce-view.html.twig');
+        echo $this->template->render('backend/new-annonce-view.html.twig');
 
     }
 
@@ -114,7 +114,7 @@ class BackendController
     function displayMyAnnonces($template)
     {
 
-        echo $template->render('backend/my-annonces.html.twig');
+        echo $this->template->render('backend/my-annonces.html.twig');
 
     }
 
@@ -142,8 +142,8 @@ class BackendController
         if ($affectedLines === false) {
             throw new \Exception('Tous les champs ne sont pas complétés');
         } else {
-            echo "votre comptre à bien été crée";
-            header('location: index.php');
+            echo $this->template->render('frontend/inscription.html.twig');
+            echo '<p class="form-signin text-center border border-success "><b>votre compte a bien été créé</b></p>';
         }
     }
 

@@ -34,6 +34,8 @@ class Router
             call_user_func([$this->frontendController, $actions[$request->type]]);
         });
 
+
+
         $this->klein->respond('GET', '/annonces/[:id]', function ($request) {
             $this->frontendController->annonce($request->id);
         });
@@ -44,6 +46,14 @@ class Router
 
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
+        });
+         $this->klein->respond('POST','/user',function() {
+             $this->backendController->displayUserPanel();
+         });
+        $this->klein->respond('POST','/signin',function($request) {
+            $this->backendController->inscription($request->pseudo,$request->mail,$request->mdp );
+
+
         });
 
         $this->klein->dispatch();
