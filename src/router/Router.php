@@ -39,17 +39,22 @@ class Router
         $this->klein->respond('GET', '/annonces/[:id]', function ($request) {
             $this->frontendController->annonce($request->id);
         });
-
+        $this->klein->respond('GET', '/newannonce', function () {
+            $this->backendController->displayNewAnnonce();
+        });
+        $this->klein->respond('GET', '/myannonces', function () {
+            $this->backendController->displayMyAnnonces();
+        });
         $this->klein->respond('GET', '/login', function () {
             $this->backendController->displayUserConnexion();
+        });
+        $this->klein->respond('GET', '/userpanel', function () {
+            $this->backendController->displayUserPanel();
         });
 
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
         });
-         $this->klein->respond('POST','/user',function() {
-             $this->backendController->displayUserPanel();
-         });
         $this->klein->respond('POST','/signin',function($request) {
 
             $this->backendController->inscription($request->pseudo,$request->mdp = sha1('mdp'),$request->mail);
@@ -58,11 +63,16 @@ class Router
         });
         $this->klein->respond('POST','/user',function($request) {
 
-            $this->backendController->reqUser($request->mailconnect,$request->mdpconnect);
+            $this->backendController->reqUser($request->mailconnect,$request->mdpconnect = sha1('mdpconnect'));
 
 
         });
+        $this->klein->respond('POST','/addannonce',function($request) {
 
+            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author);
+
+
+        });
         $this->klein->dispatch();
     }
 

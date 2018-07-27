@@ -27,16 +27,14 @@ class BackendController
     }
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content,$typeof, $tel , $email, $city, $author)
+    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author)
     {
-        $affectedLines = $this->annonceDao->createAnnonce($title, $content,$typeof, $tel, $email, $city, $author);
-        ;
+        $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author);;
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
-        }
-        else {
-            header('location: index.php');
+        } else {
+            echo $this->template->render('frontend/list-annonces-view.html.twig');
         }
     }
 
@@ -72,70 +70,6 @@ class BackendController
         }
     }
 
-    /** Permet de se connecter */
-    function reqUser($mailconnect, $mdpconnect)
-    {
-        $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
-        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']) {
-            $this->sessionService->storeCookie();
-            header('location: index.php?action=displayPanelUser');
-        } else {
-            $this->sessionService->disconnect();
-            header('location: index.php?action=displayConnection&error=true');
-        }
-    }
-
-    /** Permet de se deconnecter */
-    function disconnect()
-    {
-        $this->sessionService->disconnect();
-        header('location: index.php?action=displayConnexion');
-    }
-
-    /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
-    function displayUserPanel()
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('backend/user-view.html.twig');
-        } else {
-            header('location: index.php?action=displayConnexion');
-        }
-    }
-
-    /** permet d'afficher la page permettant de creer une nouvelle annonce*/
-    function displayNewAnnonce($template)
-    {
-
-        echo $this->template->render('backend/new-annonce-view.html.twig');
-
-    }
-
-    /** permet d'afficher la page contenant les annonces de l'utilisateur*/
-    function displayMyAnnonces($template)
-    {
-
-        echo $this->template->render('backend/my-annonces.html.twig');
-
-    }
-
-    /** permet d'afficher la page de connexion*/
-    function displayUserConnexion()
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            header('location: index.php?action=displayPanelUser');
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /** permet d'afficher la page d'inscription*/
-    function displayInscription()
-    {
-
-        echo $this->template->render('frontend/inscription.html.twig');
-    }
-
     /** permet de renvoyer l'utilisateur à la page d'accueil si inscription avec succés*/
     function inscription($pseudo, $pass, $email)
     {
@@ -146,6 +80,72 @@ class BackendController
         } else {
             echo $this->template->render('frontend/inscription.html.twig');
             echo '<p class="form-signin text-center border border-success "><b>votre compte a bien été créé</b></p>';
+        }
+    }
+
+    /** Permet de se connecter */
+    function reqUser($mailconnect, $mdpconnect)
+    {
+        $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
+        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']) {
+            $this->sessionService->storeCookie();
+
+            echo $this->template->render('backend/user-view.html.twig');
+        } else {
+            $this->sessionService->disconnect();
+            echo $this->template->render('frontend/list-annonces-view.html.twig');
+        }
+    }
+
+    /** Permet de se deconnecter */
+    function disconnect()
+    {
+        $this->sessionService->disconnect();
+        echo $this->template->render('frontenfrontend/connexion.html.twig');
+    }
+
+
+    /** permet d'afficher la page d'inscription*/
+    function displayInscription()
+    {
+
+        echo $this->template->render('frontend/inscription.html.twig');
+    }
+
+    /** permet d'afficher la page permettant de creer une nouvelle annonce*/
+    function displayNewAnnonce()
+    {
+
+        echo $this->template->render('backend/new-annonce-view.html.twig');
+
+    }
+
+    /** permet d'afficher la page contenant les annonces de l'utilisateur*/
+    function displayMyAnnonces()
+    {
+
+        echo $this->template->render('backend/my-annonces.html.twig');
+
+    }
+
+    /** permet d'afficher la page de connexion*/
+    function displayUserConnexion()
+    {
+        if ($this->sessionService->isClientAuthorized()) {
+            echo $this->template->render('frontenfrontend/connexion.html.twig');
+        } else {
+            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
+            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
+        }
+    }
+
+    /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
+    function displayUserPanel()
+    {
+        if ($this->sessionService->isClientAuthorized()) {
+            echo $this->template->render('backend/user-view.html.twig');
+        } else {
+            echo $this->template->render('frontend/connexion.html.twig');;
         }
     }
 
