@@ -132,12 +132,14 @@ class BackendController
     /** permet d'afficher la page d'inscription*/
     function displayInscription()
     {
+
         echo $this->template->render('frontend/inscription.html.twig');
     }
 
     /** permet de renvoyer l'utilisateur à la page d'accueil si inscription avec succés*/
     function inscription($pseudo, $pass, $email)
     {
+
         $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
         if ($affectedLines === false) {
             throw new \Exception('Tous les champs ne sont pas complétés');

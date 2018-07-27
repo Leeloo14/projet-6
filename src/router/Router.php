@@ -51,7 +51,14 @@ class Router
              $this->backendController->displayUserPanel();
          });
         $this->klein->respond('POST','/signin',function($request) {
-            $this->backendController->inscription($request->pseudo,$request->mail,$request->mdp );
+
+            $this->backendController->inscription($request->pseudo,$request->mdp = sha1('mdp'),$request->mail);
+
+
+        });
+        $this->klein->respond('POST','/user',function($request) {
+
+            $this->backendController->reqUser($request->mailconnect,$request->mdpconnect);
 
 
         });
