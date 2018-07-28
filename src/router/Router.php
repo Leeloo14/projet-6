@@ -20,10 +20,10 @@ class Router
         $this->klein->respond('GET', '/', function () {
             $this->frontendController->listAnnonces();
         });
-
         $this->klein->respond('GET', '/annonces', function ($request) {
             if (is_null($request->type)) {
-                $this->frontendController->listAnnoncesAll();
+                $this->frontendController->
+                listAnnoncesAll();
             }
             $actions = [
                 "all" => 'listAnnoncesAll',
@@ -33,9 +33,6 @@ class Router
             ];
             call_user_func([$this->frontendController, $actions[$request->type]]);
         });
-
-
-
         $this->klein->respond('GET', '/annonces/[:id]', function ($request) {
             $this->frontendController->annonce($request->id);
         });
@@ -58,18 +55,15 @@ class Router
         $this->klein->respond('POST','/signin',function($request) {
 
             $this->backendController->inscription($request->pseudo,$request->mdp = sha1('mdp'),$request->mail);
-
-
-        });
-        $this->klein->respond('POST','/user',function($request) {
-
-            $this->backendController->reqUser($request->mailconnect,$request->mdpconnect = sha1('mdpconnect'));
-
-
         });
         $this->klein->respond('POST','/addannonce',function($request) {
 
             $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author);
+        });
+        $this->klein->respond('POST','/user',function($request) {
+              $this->backendController->reqUser($request->mailconnect = 'mailconnect', $request->mdpconnect = sha1('mdpconnect'));
+
+
 
 
         });

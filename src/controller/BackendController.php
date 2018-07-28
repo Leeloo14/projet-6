@@ -89,11 +89,10 @@ class BackendController
         $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
         if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']) {
             $this->sessionService->storeCookie();
-
             echo $this->template->render('backend/user-view.html.twig');
         } else {
             $this->sessionService->disconnect();
-            echo $this->template->render('frontend/list-annonces-view.html.twig');
+            echo $this->template->render('frontend/connexion.html.twig');
         }
     }
 
@@ -132,7 +131,7 @@ class BackendController
     function displayUserConnexion()
     {
         if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('frontenfrontend/connexion.html.twig');
+            echo $this->template->render('backend/user-view.html.twig');
         } else {
             $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
             echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
