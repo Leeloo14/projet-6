@@ -1,0 +1,17 @@
+{
+  "name": "anneg/projet-6",
+  "description": "projet 6",
+  "require": {
+    "twig/twig": "^2.0",
+    "klein/klein": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Projet6\\": "src/"
+    }
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "webpack": "^4.16.3"
+  }
+}

@@ -15,11 +15,6 @@ html, body {
 
 }
 
-.wallpaper {
-    background-image: url("../img/mains.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-}
 
 .container-white {
     background-color:white;
@@ -51,4 +46,32 @@ html, body {
 
 .dropdown-menu{
     min-width: 19rem !important;
+}
+
+
+
+
+.carousel .carousel-item {
+    width: 100%;
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.carousel .carousel-item:first-of-type {
+    background-image: url("../img/baby.jpg");
+}
+
+.carousel .carousel-item:nth-of-type(2) {
+    background-image: url("../img/brico.jpg");
+}
+
+.carousel .carousel-item:last-of-type {
+    background-image: url("../img/jardinier.jpg");
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
 }
