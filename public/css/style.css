@@ -14,14 +14,17 @@ html, body {
     text-align: center;
 
 }
-
+.bg-light{
+    background:linear-gradient(to right, mediumturquoise, transparent);};
 .btn-position{
     float: right;
 }
 .container-white {
     background-color:white;
 }
-
+.container{
+    text-align: center;
+}
 .wrapper {
     margin-top: 80px;
     margin-bottom: 80px;
