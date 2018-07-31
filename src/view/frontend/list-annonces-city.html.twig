@@ -18,7 +18,7 @@
         <ul class="ul" id="list">
             {% for annonce in annonces %}
 
-                   <li class="in">{{ annonce.city }}</li>
+                   <li class="in" ><a>{{ annonce.city }}<a class=" btn-position btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></li>
 
 
 

@@ -15,7 +15,9 @@ html, body {
 
 }
 
-
+.btn-position{
+    float: right;
+}
 .container-white {
     background-color:white;
 }
