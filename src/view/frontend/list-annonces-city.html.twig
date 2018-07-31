@@ -8,35 +8,27 @@
 
 {% block body %}
 
-<div class="global-container">
-    <div class="container mt-3 mb-3">
+    <section class="list-wrap">
 
-        <div class="container-white mt-5 rounded ">
-            <div class=" container">
+        <label for="search-text">Ville souhaitée</label>
+        <input type="text" id="search-text" placeholder="ville" class="search-box">
+        <span class="list-count"></span>
 
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th style="width:15%" scope="col">Ville</th>
-                        <th style="width:15%" scope="col">Nombre d'annonces</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for annonce in annonces %}
-                        <tr>
+        <ul class="ul" id="list">
+            {% for annonce in annonces %}
 
-                            <td><a class="text-dark">{{ annonce.city}}</a></td>
-                            <td><a class="text-dark ">{{ annonce.number }}</a></td>
-                        </tr>
+                   <li class="in">{{ annonce.city }}</li>
 
-                    {% endfor %}
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
+
+
+
+            {% endfor %}
+</ul>
+
+    </section>
 {% endblock %}
 
 

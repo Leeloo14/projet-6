@@ -105,20 +105,19 @@ class AnnonceDao extends BaseDao
     {
 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT city ,COUNT(*) as number FROM annonces GROUP BY city');
+        $req = $db->prepare('SELECT * FROM annonces ORDER BY city ASC ');
         $req->execute();
         $annoncesDB = $req->fetchAll();
         $annonces = [];
-        foreach ($annoncesDB as $annonceDB)
-        {
-
-            
-            array_push($annonces, new Annonce($annonceDB)) ;
+        foreach ($annoncesDB as $annonceDB) {
+            array_push($annonces, new Annonce($annonceDB));
         }
- return $annoncesDB;
+        return $annonces;
+
 
 
     }
+
 
 
 }

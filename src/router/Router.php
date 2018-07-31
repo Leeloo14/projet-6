@@ -63,9 +63,13 @@ class Router
         $this->klein->respond('POST','/user',function($request) {
               $this->backendController->reqUser($request->mailconnect = 'mailconnect', $request->mdpconnect = sha1('mdpconnect'));
 
+            $this->klein->respond('GET', '/city/[:id]', function ($request) {
+                $this->frontendController->city($request->id);
+            });
 
-
-
+            $this->klein->respond('GET', '/s', function ($request) {
+                $this->frontendController->city($request->annonceId);
+            });
         });
         $this->klein->dispatch();
     }

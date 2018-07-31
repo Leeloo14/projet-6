@@ -70,5 +70,14 @@ class FrontendController
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
 
+    function city ($annonceId)
+    {
+        $annonces = $this->annonceDao->getCity();
+        $annonce = $this->annonceDao->getAnnonceById($annonceId);
+        echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+    }
+
+
+
 
 }
