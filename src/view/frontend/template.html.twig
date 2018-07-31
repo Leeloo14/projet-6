@@ -17,8 +17,6 @@
 </head>
 
 
-
-
 {% include "frontend/nav.html.twig" %}
 
 {% block body %}{% endblock %}
@@ -32,18 +30,19 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
-       ></script>
+></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<body>
 <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         var jobCount = $('#list .in').length;
         $('.list-count').text(jobCount + ' annonces sont disponibles');
 
 
         $("#search-text").keyup(function () {
-            //$(this).addClass('hidden');
+
 
             var searchTerm = $("#search-text").val();
             var listItem = $('#list').children('li');
@@ -51,36 +50,35 @@
 
             var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
 
-            //extends :contains to be case insensitive
+
             $.extend($.expr[':'], {
-                'containsi': function(elem, i, match, array)
-                {
+                'containsi': function (elem, i, match, array) {
                     return (elem.textContent || elem.innerText || '').toLowerCase()
                         .indexOf((match[3] || "").toLowerCase()) >= 0;
                 }
             });
 
 
-            $("#list li").not(":containsi('" + searchSplit + "')").each(function(e)   {
+            $("#list li").not(":containsi('" + searchSplit + "')").each(function (e) {
                 $(this).addClass('hiding out').removeClass('in');
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.out').addClass('hidden');
                 }, 300);
             });
 
-            $("#list li:containsi('" + searchSplit + "')").each(function(e) {
+            $("#list li:containsi('" + searchSplit + "')").each(function (e) {
                 $(this).removeClass('hidden out').addClass('in');
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.in').removeClass('hiding');
                 }, 1);
             });
 
 
             var jobCount = $('#list .in').length;
-            $('.list-count').text(jobCount + ' items');
+            $('.list-count').text(jobCount + ' annonce(s) trouvée(s)');
 
             //shows empty state text when no jobs found
-            if(jobCount == '0') {
+            if (jobCount == '0') {
                 $('#list').addClass('empty');
             }
             else {
@@ -94,7 +92,7 @@
 </script>
 
 <footer>
-    <div class="bas" >
+    <div class="bas">
         <div class="container-fluid  text-center mt-2">
             {% block footer %}{% endblock %}
 
