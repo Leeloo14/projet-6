@@ -8,14 +8,34 @@
 
 {% block body %}
 
-    <div class="container container-white rounded mt-5">
-        <div class="text-center"> <p>Catégories</p></div>
-        <div class="row">
-           <label for="city">Des annonces sont disponibles dans la ville de</label>
-            <select name="'city" id="city">
+<div class="global-container">
+    <div class="container mt-3 mb-3">
 
-            </select>
-    </div>
+        <div class="container-white mt-5 rounded ">
+            <div class=" container">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th style="width:15%" scope="col">Ville</th>
+                        <th style="width:15%" scope="col">Nombre d'annonces</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for annonce in annonces %}
+                        <tr>
+
+                            <td><a class="text-dark">{{ annonce.city}}</a></td>
+                            <td><a class="text-dark ">{{ annonce.number }}</a></td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

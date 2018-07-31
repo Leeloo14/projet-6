@@ -100,6 +100,25 @@ class AnnonceDao extends BaseDao
         $affectedLine = $annonce->execute(array($title, $content, $typeof, $tel, $email, $city));
         return $affectedLine;
     }
+   /** Retourne les ville et le nombre d'annonces correspondantes */
+    public function getCity()
+    {
+
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT city ,COUNT(*) as number FROM annonces GROUP BY city');
+        $req->execute();
+        $annoncesDB = $req->fetchAll();
+        $annonces = [];
+        foreach ($annoncesDB as $annonceDB)
+        {
+
+            
+            array_push($annonces, new Annonce($annonceDB)) ;
+        }
+ return $annoncesDB;
+
+
+    }
 
 
 }

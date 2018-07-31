@@ -57,8 +57,9 @@ class FrontendController
     /**Retoune la page pour selectionner une annonce par ville disponible*/
     function listAnnoncesCity()
     {
-
-        echo $this->template->render('frontend/list-annonces-city.html.twig');
+        $annonceDao = new AnnonceDao();
+        $annonces = $annonceDao->getCity();
+        echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' =>$annonces));
     }
 
     /** Retourne une annonce */

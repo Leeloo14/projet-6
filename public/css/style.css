@@ -48,9 +48,24 @@ html, body {
     min-width: 19rem !important;
 }
 
+.wallpaper1 {
+    background-image: url("../img/baby.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
 
 
+.wallpaper2 {
+    background-image: url("../img/brico.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
 
+.wallpaper3 {
+    background-image: url("../img/jardinier.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
 .carousel .carousel-item {
     width: 100%;
     height: 90vh;
