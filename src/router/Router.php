@@ -52,16 +52,16 @@ class Router
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
         });
-        $this->klein->respond('POST','/signin',function($request) {
+        $this->klein->respond('POST', '/signin', function ($request) {
 
-            $this->backendController->inscription($request->pseudo,$request->mdp = sha1('mdp'),$request->mail);
+            $this->backendController->inscription($request->pseudo, $request->mdp = sha1('mdp'), $request->mail);
         });
-        $this->klein->respond('POST','/addannonce',function($request) {
+        $this->klein->respond('POST', '/addannonce', function ($request) {
 
             $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author);
         });
-        $this->klein->respond('POST','/user',function($request) {
-              $this->backendController->reqUser($request->mailconnect = 'mailconnect', $request->mdpconnect = sha1('mdpconnect'));
+        $this->klein->respond('POST', '/user', function ($request) {
+            $this->backendController->reqUser($request->mailconnect = 'mailconnect', $request->mdpconnect = sha1('mdpconnect'));
 
             $this->klein->respond('GET', '/city/[:id]', function ($request) {
                 $this->frontendController->city($request->id);
@@ -70,6 +70,18 @@ class Router
             $this->klein->respond('GET', '/s', function ($request) {
                 $this->frontendController->city($request->annonceId);
             });
+        });
+        $this->klein->respond('GET', '/public/[*]', function ($request, $response) {
+            $file = $_SERVER['DOCUMENT_ROOT'] . $request->pathname();
+            $types = [
+                "css" => "text/css",
+                "js" => "application/javascript",
+                "png" => "image/png",
+                "jpg" => "image/jpg",
+            ];
+            $contentType = $types[pathinfo($file, PATHINFO_EXTENSION)] ?? mime_content_type($file);
+            $response->header('Content-type', $contentType);
+            return file_get_contents($file);
         });
         $this->klein->dispatch();
     }
