@@ -13,13 +13,40 @@
 {% include "frontend/nav.html.twig" %}
 
 {% block body %}{% endblock %}
-<div class="container">
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-</div>
+
 <script src="/public/dist/build.js"></script>
 <body>
+<div class="container-test">
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">Qui sommes nous ?</a></button>
+    </div>
 
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="/annonces">Toutes les annonces</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="/annonces?type=city">Annonces par ville</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark"  href="/annonces?type=give">Proposition de services</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3 "><a class="text-dark" href="/annonces?type=search">Recherche de services</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">S'inscrire</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">Se connecter</a></button>
+    </div>
+    <div>
+        <button type="button" class="btnmod btn btn-outline-primary"><a class="text-dark" href="">Contact</a></button>
+    </div>
+
+
+</div>
 <script>
+
 
     $(document).ready(function () {
 
@@ -78,10 +105,11 @@
 
 </script>
 
-<script>(function(d, s, id) {
+<script>(function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
