@@ -22,15 +22,16 @@
                 <p >localisation: {{ annonce.city|raw }}</p>
 
 
-            <div class="pt-3 border">
+            <div class="pt-3">
                 <p>
                     {{ annonce.content|raw }}
                 </p>
             </div>
-
+            <a  class=" btn btn-danger btn-lg mt-3 " href="/spameditannonce/{{ annonce.id }}">Signaler</a>
             <button type="button" class="btn btn-primary btn-lg mt-3" data-toggle="modal" data-target="#myModal">
                 Contacter {{ annonce.author }}
             </button>
+
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

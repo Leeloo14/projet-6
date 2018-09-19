@@ -69,13 +69,37 @@ class FrontendController
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
-
+    /**retourne l'annonce séléctionné */
     function city ($annonceId)
     {
         $annonces = $this->annonceDao->getCity();
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
+
+
+    /** permet d'éditer un motif de signalement pour signaler une annonce */
+    function spamEditAnnonce($annonceId)
+    {
+        $annonces = $this->annonceDao->getAllAnnonces();
+        $annonce = $this->annonceDao->getAnnonceById($annonceId);
+        echo $this->template->render('frontend/spamannonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+    }
+
+    /** permet d'envoyer le motif de signalement */
+    function spamAnnonce($annonceId, $spam)
+    {$annonces = $this->annonceDao->getAllAnnonces();
+        $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
+        if ($affectedLines === false) {
+            throw new \Exception('Impossible de signaler l\annonce !');
+        } else {
+            echo $this->template->render('frontend/list-annonces-all.html.twig', array( 'annonces' => $annonces));
+
+        }
+    }
+
+
+
 
 
 

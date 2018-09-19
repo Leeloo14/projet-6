@@ -42,35 +42,78 @@ class Router
         $this->klein->respond('GET', '/myannonces', function () {
             $this->backendController->displayMyAnnonces();
         });
-        $this->klein->respond('GET', '/login', function () {
-            $this->backendController->displayUserConnexion();
-        });
-        $this->klein->respond('GET', '/userpanel', function () {
-            $this->backendController->displayUserPanel();
-        });
-
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
         });
         $this->klein->respond('POST', '/signin', function ($request) {
 
-            $this->backendController->inscription($request->pseudo, $request->mdp = sha1('mdp'), $request->mail);
+            $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail);
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
 
             $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author);
         });
-        $this->klein->respond('POST', '/user', function ($request) {
-            $this->backendController->reqUser($request->mailconnect = 'mailconnect', $request->mdpconnect = sha1('mdpconnect'));
 
-            $this->klein->respond('GET', '/city/[:id]', function ($request) {
-                $this->frontendController->city($request->id);
-            });
+        $this->klein->respond('POST', '/spamannonce', function ($request) {
 
-            $this->klein->respond('GET', '/s', function ($request) {
-                $this->frontendController->city($request->annonceId);
-            });
+            $this->frontendController->spamAnnonce($request->id, $request->spam);
         });
+        $this->klein->respond('GET', '/spameditannonce/[:id]', function ($request) {
+
+            $this->frontendController->spamEditAnnonce($request->id);
+        });
+
+        $this->klein->respond('POST', '/disconnect', function () {
+
+            $this->backendController->disconnect();
+        });
+
+        /**************************************************/
+
+        $this->klein->respond('GET', '/spamannoncesview', function () {
+            $this->backendController->listAnnoncesSpam();
+        });
+
+
+        $this->klein->respond('POST', '/delete', function ($request) {
+
+            $this->backendController->deleteAdminPost($request->id);
+        });
+
+
+        /*************************************************************/
+
+        $this->klein->respond('GET', '/loginmaster', function () {
+            $this->backendController->displayUserConnexionMaster();
+        });
+
+        $this->klein->respond('GET', '/userpanelmaster', function () {
+            $this->backendController->displayUserPanelMaster();
+        });
+
+        $this->klein->respond('POST', '/usermaster', function ($request) {
+            $this->backendController->reqUserMaster($request->mailconnect, $request->mdpconnect);
+        });
+
+
+        /******************************************************************/
+
+
+        $this->klein->respond('GET', '/login', function () {
+            $this->backendController->displayUserConnexion();
+        });
+
+        $this->klein->respond('GET', '/userpanel', function () {
+            $this->backendController->displayUserPanel();
+        });
+
+
+        $this->klein->respond('POST', '/user', function ($request) {
+            $this->backendController->reqUser($request->mailconnect, $request->mdpconnect);
+
+        });
+
+
         $this->klein->respond('GET', '/public/[*]', function ($request, $response) {
             $file = $_SERVER['DOCUMENT_ROOT'] . $request->pathname();
             $types = [

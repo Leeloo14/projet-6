@@ -2,12 +2,12 @@
 
 {% block head %}
     <meta charset="utf-8"/>
-    <title>Connexion</title>
+    <title>Connexion à l'espace d'administration</title>
 {% endblock %}
 
 {% block body %}
     <div class="wrapper ">
-        <form class="form-signin rounded" method="POST" action="/user">
+        <form class="form-signin rounded" method="POST" action="/usermaster">
             <h2 class="form-signin-heading">Connexion</h2>
             <input type="email" class="form-control mb-2" name="mailconnect" placeholder="Mail" required="" autofocus="" />
             <input type="password" class="form-control mb-2" name="mdpconnect" placeholder="Mot de passe" required=""/>

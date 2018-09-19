@@ -2,18 +2,34 @@
 
 namespace Projet6\Services;
 
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\JWT;
+
 class SessionService
 {
 
     function isClientAuthorized()
     {
-        return isset($_COOKIE['projet6']);
+        if(!isset($_COOKIE['projet6'])) {
+            return false;
+        }
+        try {
+            JWT::decode($_COOKIE['projet6'], file_get_contents('certs/jwt.pub'), ['RS256']);
+            return true;
+        } catch (ExpiredException $e){
+         return false;
+        }
     }
 
     function storeCookie()
     {
-        $endTime = time() + 3600; // Delai d'expiration de la session du client
-        setcookie('projet6', 'connexion-pr6', $endTime); // Stock un cookie qui contient le temps d'expiration
+        $token = array(
+            "iss" => "normandhelp",
+            "iat" => time(),
+            "exp" => time() + 3600
+        );
+        $jwt = JWT::encode($token, file_get_contents('certs/jwt.key'), 'RS256');
+        setcookie('projet6', $jwt); // Stock un cookie qui contient le temps d'expiration
     }
 
     function disconnect()

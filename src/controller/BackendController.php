@@ -4,6 +4,7 @@ namespace Projet6\Controller;
 
 use Projet6\Dao\AnnonceDao;
 use Projet6\Dao\MemberDao;
+use Projet6\Model\Member;
 use Projet6\Services\SessionService;
 use Twig_Environment;
 use Twig_Extension_Debug;
@@ -34,20 +35,10 @@ class BackendController
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
         } else {
-            echo $this->template->render('frontend/list-annonces-view.html.twig');
+            echo $this->template->render('backend/my-annonces.html.twig');
         }
     }
 
-    /** permet de supprimer une annonce */
-    function deleteAdminPost($id, $template)
-    {
-        $annonceDao = new AnnonceDao();
-        $annonceDao->deleteAnnonce($id);
-        /*a définir*/
-        $annonces = $annonceDao->getMyAnnonces();
-        echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces));
-
-    }
 
     /** permet de modifier une annonce existante */
     function editAnnonce($annonceId, $template)
@@ -74,33 +65,21 @@ class BackendController
     function inscription($pseudo, $pass, $email)
     {
 
-        $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
+        $affectedLines = $this->memberDao->createMember($pseudo, password_hash($pass, PASSWORD_BCRYPT), $email);
         if ($affectedLines === false) {
             throw new \Exception('Tous les champs ne sont pas complétés');
         } else {
-            echo $this->template->render('frontend/inscription.html.twig');
-            echo '<p class="form-signin text-center border border-success "><b>votre compte a bien été créé</b></p>';
+            header('Location: /userpanel');
+            die();
         }
     }
 
-    /** Permet de se connecter */
-    function reqUser($mailconnect, $mdpconnect)
-    {
-        $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
-        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']) {
-            $this->sessionService->storeCookie();
-            echo $this->template->render('backend/user-view.html.twig');
-        } else {
-            $this->sessionService->disconnect();
-            echo $this->template->render('frontend/connexion.html.twig');
-        }
-    }
 
     /** Permet de se deconnecter */
     function disconnect()
     {
         $this->sessionService->disconnect();
-        echo $this->template->render('frontenfrontend/connexion.html.twig');
+        echo $this->template->render('frontend/connexion.html.twig');
     }
 
 
@@ -122,10 +101,74 @@ class BackendController
     /** permet d'afficher la page contenant les annonces de l'utilisateur*/
     function displayMyAnnonces()
     {
-
         echo $this->template->render('backend/my-annonces.html.twig');
 
     }
+
+
+    /**annonces signalées*/
+    function listAnnoncesSpam()
+    {
+        $annonceDao = new AnnonceDao();
+        $annonces = $annonceDao->getSpamAnnonces();
+        echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** annonce membre */
+    function annoncesMember()
+    {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** Permet de se connecter */
+    function reqUser($mailconnect, $mdpconnect)
+    {
+        /** @var Member $user */
+        $user = $this->memberDao->getByEmail($mailconnect);
+        if (password_verify($mdpconnect, $user->getPass())) {
+            $this->sessionService->storeCookie();
+            header('Location: /userpanel');
+            die();
+        }
+        header('Location: /login');
+        die();
+
+    }
+
 
     /** permet d'afficher la page de connexion*/
     function displayUserConnexion()
@@ -138,6 +181,7 @@ class BackendController
         }
     }
 
+
     /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
     function displayUserPanel()
     {
@@ -145,6 +189,81 @@ class BackendController
             echo $this->template->render('backend/user-view.html.twig');
         } else {
             echo $this->template->render('frontend/connexion.html.twig');;
+        }
+    }
+
+
+
+
+
+
+
+
+    /*****************************************************************************/
+    /** Permet de se connecter */
+    function reqUserMaster($mailconnect, $mdpconnect)
+    {
+        /** @var Member $user */
+        $user = $this->memberDao->getByEmail($mailconnect);
+        if (password_verify($mdpconnect, $user->getPass())) {
+            $this->sessionService->storeCookie();
+            header('Location: /userpanelmaster');
+            die();
+        }
+        header('Location: /loginmaster');
+        die();
+
+    }
+
+
+    /** permet d'afficher la page de connexion*/
+    function displayUserConnexionMaster()
+    {
+        if ($this->sessionService->isClientAuthorized()) {
+            echo $this->template->render('backend/master-view.html.twig');
+        } else {
+            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
+            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
+        }
+    }
+
+
+    /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
+    function displayUserPanelMaster()
+    {
+        if ($this->sessionService->isClientAuthorized()) {
+            echo $this->template->render('backend/master-view.html.twig');
+        } else {
+            echo $this->template->render('frontend/master.html.twig');;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /** permet de supprimer une annonce */
+    function deleteAdminPost($annonceId)
+    {
+        {
+            $annonceDao = new AnnonceDao();
+            $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
+            $annonces = $annonceDao->getSpamAnnonces();
+
+            if ($affectedLines === false) {
+                throw new \Exception('Impossible de supprimer l\annonce !');
+            } else {
+                echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
+
+            }
         }
     }
 

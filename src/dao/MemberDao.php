@@ -2,6 +2,9 @@
 
 namespace Projet6\Dao;
 
+
+use Projet6\Model\Member;
+
 class MemberDao extends BaseDao
 {
     /** Permet de creer un nouveau membre*/
@@ -14,11 +17,21 @@ class MemberDao extends BaseDao
     }
 
     /** Permet de recuperer un utilisateur pour la connexion*/
-    public function getUser($mailconnect, $mdpconnect)
+    public function getByEmail($mailconnect)
     {
         $db = $this->dbConnect();
-        $requser = $db->prepare('SELECT * FROM member WHERE email = ' . $this->Q($mailconnect) . ' AND pass = ' . $this->Q($mdpconnect));
-        $requser->execute();
-        return $requser->fetch();
+        $requser = $db->prepare('SELECT * FROM member WHERE email = ?');
+        $requser->execute([$mailconnect]);
+        return $requser->fetchObject(Member::class);
+    }
+
+    /*******************************/
+    /** Permet de recuperer l'admin pour la connexion*/
+    public function getByEmailMaster($mailconnect)
+    {
+        $db = $this->dbConnect();
+        $requser = $db->prepare('SELECT * FROM member WHERE email = master2@hotmail.fr');
+        $requser->execute([$mailconnect]);
+        return $requser->fetchObject(Member::class);
     }
 }

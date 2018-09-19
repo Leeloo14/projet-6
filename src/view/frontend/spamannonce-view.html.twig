@@ -1,0 +1,35 @@
+{% extends "frontend/template.html.twig" %}
+
+{% block head %}
+    <title>Annonces publiées</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="global-container">
+        <div class="container container-white rounded mt-3 mb-3">
+
+            <div class="container-white mt-5 rounded ">
+                <div class=" container">
+                    <form method="POST" action="/spamannonce">
+                        <h2 class="pt-2">Vous souhaitez signaler l'annonce publiée par {{ annonce.author }}</h2>
+                        <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
+                        <input type="hidden" id="action" name="action" value="signalAnnonce"/>
+                        <div>
+                            <div class="text-left mb-3">
+                                <label for="spam">Veuillez expliquer les raisons de votre signalement</label><br/>
+                                <textarea id="spam" name="spam" class="form-control"></textarea>
+                            </div>
+                            <button class="btn btn-success mt-2 mb-2 " type="submit">Poster</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

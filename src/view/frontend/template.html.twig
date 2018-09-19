@@ -15,104 +15,19 @@
 {% block body %}{% endblock %}
 
 <script src="/public/dist/build.js"></script>
-<body>
-<div class="container-test">
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">Qui sommes nous ?</a></button>
-    </div>
-
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="/annonces">Toutes les annonces</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="/annonces?type=city">Annonces par ville</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark"  href="/annonces?type=give">Proposition de services</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3 "><a class="text-dark" href="/annonces?type=search">Recherche de services</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">S'inscrire</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary mb-3"><a class="text-dark" href="">Se connecter</a></button>
-    </div>
-    <div>
-        <button type="button" class="btnmod btn btn-outline-primary"><a class="text-dark" href="">Contact</a></button>
-    </div>
+<body class="background">
 
 
-</div>
+
 <script>
-
-
-    $(document).ready(function () {
-
-        var jobCount = $('#list .in').length;
-        $('.list-count').text(jobCount + ' annonces sont disponibles');
-
-
-        $("#search-text").keyup(function () {
-
-
-            var searchTerm = $("#search-text").val();
-            var listItem = $('#list').children('li');
-
-
-            var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-
-
-            $.extend($.expr[':'], {
-                'containsi': function (elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || '').toLowerCase()
-                        .indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
-
-
-            $("#list li").not(":containsi('" + searchSplit + "')").each(function (e) {
-                $(this).addClass('hiding out').removeClass('in');
-                setTimeout(function () {
-                    $('.out').addClass('hidden');
-                }, 300);
-            });
-
-            $("#list li:containsi('" + searchSplit + "')").each(function (e) {
-                $(this).removeClass('hidden out').addClass('in');
-                setTimeout(function () {
-                    $('.in').removeClass('hiding');
-                }, 1);
-            });
-
-
-            var jobCount = $('#list .in').length;
-            $('.list-count').text(jobCount + ' annonce(s) trouvée(s)');
-
-            //shows empty state text when no jobs found
-            if (jobCount == '0') {
-                $('#list').addClass('empty');
-            }
-            else {
-                $('#list').removeClass('empty');
-            }
-
-        });
-
-
-    });
-
-</script>
-
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+  </script>
 
 <footer>
     <div class="bas">
@@ -121,19 +36,20 @@
             {% block footer %}{% endblock %}
 
 
-            <a href="/login" class="text-white ">Je me connecte</a> /
-            <a href="/signup" class="text-white">M'inscrire</a>
+
 
 
             <div class="text-white">
                 © 2018 Copyright:
                 <a> Anne Gasté </a>
+              <div>
+                    <a class="text-white mr-4" href="/loginmaster">Connexion admin</a>
+              </div>
             </div>
         </div>
-
     </div>
 </footer>
 
 </body>
-
+</div>
 </html>

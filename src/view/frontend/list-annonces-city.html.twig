@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="global-container">
     <section class="list-wrap">
 
-        <label for="search-text">Ville souhaitée</label>
+        <label for="search-text" class="text-white">Ville souhaitée</label>
         <input type="text" id="search-text" placeholder="ville" class="search-box">
         <span class="list-count"></span>
 
@@ -18,7 +18,7 @@
         <ul class="ul" id="list">
             {% for annonce in annonces %}
 
-                   <li class="in" ><a>{{ annonce.city }}<a class=" btn-position btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></li>
+                <li class="in" ><a>{{ annonce.city }}<a class=" btn-position btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></a></li>
 
 
 
@@ -26,9 +26,10 @@
 
 
             {% endfor %}
-</ul>
+        </ul>
 
     </section>
+</div>
 {% endblock %}
 
 

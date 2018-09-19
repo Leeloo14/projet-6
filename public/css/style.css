@@ -39,9 +39,12 @@ html, body {
     margin-right: -246px;
 }
 .bg-light {
-    background: linear-gradient(to right, mediumturquoise, transparent);
-}
+    background: rgba(0,0,0,0.5) !important;
 
+}
+.marque{
+    width: 50px;
+}
 .btn-position {
     float: right;
 }
@@ -120,8 +123,13 @@ html, body {
     width: 30%;
     padding: 0.5em;
     color: #ddd;
+    background-color: forestgreen;
 }
-
+.wallpaper{
+    background-image: url("../img/orig2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
 .empty-item {
     transition-property: opacity;
     transition-duration: 0s;
@@ -153,6 +161,7 @@ html, body {
     position: relative;
 }
 
+
 li {
     transition-property: margin, background-color, border-color;
     transition-duration: .4s, .2s, .2s;
@@ -170,7 +179,11 @@ li {
     position: relative;
     z-index: 2;
 }
-
+.background {
+    background-image: url("../img/orig.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
 .btnmod{
     border-radius: 0px 25px 25px 0px;
     height: 50px;
@@ -182,6 +195,7 @@ li {
     0 1px 0 rgba( 255, 255, 255, 0.4);
 
 }
+
 .btnmod a{
     visibility: hidden;
 }
@@ -224,110 +238,5 @@ li {
 * {
     margin: 0;
     padding: 0;
-}
-
-#slideshow {
-    margin: 0 auto;
-    padding-top: 104px;
-    height: 600px;
-    width: 100%;
-    background-color: white;
-    box-sizing: border-box;
-}
-
-.entire-content {
-    margin: auto;
-    width: 190px;
-    perspective: 1000px;
-    position: relative;
-    padding-top: 80px;
-}
-
-.content-carrousel {
-    width: 100%;
-    position: absolute;
-    float: right;
-    animation: rotar 15s infinite linear;
-    transform-style: preserve-3d;
-}
-
-.content-carrousel:hover {
-    animation-play-state: paused;
-    cursor: pointer;
-}
-
-.content-carrousel figure {
-    width: 100%;
-    height: 120px;
-    border: 1px solid #3b444b;
-    overflow: hidden;
-    position: absolute;
-}
-
-.content-carrousel figure:nth-child(1) {
-    transform: rotateY(0deg) translateZ(600px);
-}
-
-.content-carrousel figure:nth-child(2) {
-    transform: rotateY(40deg) translateZ(300px);
-}
-
-.content-carrousel figure:nth-child(3) {
-    transform: rotateY(80deg) translateZ(600px);
-}
-
-.content-carrousel figure:nth-child(4) {
-    transform: rotateY(120deg) translateZ(300px);
-}
-
-.content-carrousel figure:nth-child(5) {
-    transform: rotateY(160deg) translateZ(600px);
-}
-
-.content-carrousel figure:nth-child(6) {
-    transform: rotateY(200deg) translateZ(300px);
-}
-
-.content-carrousel figure:nth-child(7) {
-    transform: rotateY(240deg) translateZ(600px);
-}
-
-.content-carrousel figure:nth-child(8) {
-    transform: rotateY(280deg) translateZ(300px);
-}
-
-.content-carrousel figure:nth-child(9) {
-    transform: rotateY(320deg) translateZ(600px);
-}
-
-.content-carrousel figure:nth-child(10) {
-    transform: rotateY(360deg) translateZ(0px);
-}
-
-.shadow {
-    position: absolute;
-    box-shadow: 0px 0px 20px 0px #000;
-    border-radius: 1px;
-}
-
-.content-carrousel img {
-    image-rendering: auto;
-    transition: all 300ms;
-    width: 100%;
-    height: 100%;
-}
-
-.content-carrousel img:hover {
-    transform: scale(1.2);
-    transition: all 300ms;
-}
-
-@keyframes rotar {
-    from {
-        transform: rotateY(0deg);
-    }
-    to {
-        transform: rotateY(360deg);
-    }
 }
 

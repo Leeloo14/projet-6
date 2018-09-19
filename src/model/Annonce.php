@@ -13,6 +13,7 @@ class Annonce
     private $city;
     private $author;
     private $creationDate;
+    private $spam;
 
     function __construct($annonceData)
     {
@@ -46,6 +47,10 @@ class Annonce
         if (isset($annonceData['creation_date'])) {
             $this->creationDate = date_create_from_format('Y-m-d H:i:s', $annonceData['creation_date']);
         }
+        if (isset($annonceData['spam'])) {
+            $this->spam = $annonceData['spam'];
+        }
+
 
     }
 
@@ -94,7 +99,10 @@ class Annonce
     {
         return $this->creationDate;
     }
-
+    public function getSpam()
+    {
+        return $this->spam;
+    }
 
     public function setId($id)
     {
@@ -141,6 +149,10 @@ class Annonce
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
+    }
+    public  function setSpam($spam)
+    {
+        $this->spam = $spam;
     }
 
 }
