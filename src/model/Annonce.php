@@ -15,6 +15,7 @@ class Annonce
     private $creationDate;
     private $spam;
 
+
     function __construct($annonceData)
     {
         if (isset($annonceData['id'])) {
@@ -60,7 +61,6 @@ class Annonce
     }
 
 
-
     public function getTitle()
     {
         return $this->title;
@@ -91,24 +91,27 @@ class Annonce
     {
         return $this->city;
     }
+
     public function getAuthor()
     {
         return $this->author;
     }
+
     public function getCreationDate()
     {
         return $this->creationDate;
     }
+
     public function getSpam()
     {
         return $this->spam;
     }
 
+
     public function setId($id)
     {
         $this->id = $id;
     }
-
 
 
     public function setTitle($title)
@@ -120,7 +123,6 @@ class Annonce
     {
         $this->content = $content;
     }
-
 
 
     public function setTypeof($typeof)
@@ -142,15 +144,18 @@ class Annonce
     {
         $this->city = $city;
     }
+
     public function setAuthor($author)
     {
         $this->author = $author;
     }
+
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
     }
-    public  function setSpam($spam)
+
+    public function setSpam($spam)
     {
         $this->spam = $spam;
     }

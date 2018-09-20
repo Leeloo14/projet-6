@@ -24,6 +24,7 @@ class Router
             if (is_null($request->type)) {
                 $this->frontendController->
                 listAnnoncesAll();
+                return;
             }
             $actions = [
                 "all" => 'listAnnoncesAll',
@@ -80,6 +81,18 @@ class Router
             $this->backendController->deleteAdminPost($request->id);
         });
 
+        $this->klein->respond('POST', '/deleteadminmessage', function ($request) {
+
+            $this->backendController->deleteMessage($request->id);
+        });
+
+
+
+
+
+        $this->klein->respond('GET', '/messagesview', function () {
+            $this->backendController->listMassages();
+        });
 
         /*************************************************************/
 
@@ -97,7 +110,9 @@ class Router
 
 
         /******************************************************************/
-
+        $this->klein->respond('GET', '/contact', function () {
+            $this->frontendController->displayContact();
+        });
 
         $this->klein->respond('GET', '/login', function () {
             $this->backendController->displayUserConnexion();
@@ -111,6 +126,11 @@ class Router
         $this->klein->respond('POST', '/user', function ($request) {
             $this->backendController->reqUser($request->mailconnect, $request->mdpconnect);
 
+        });
+
+        $this->klein->respond('POST', '/sendmessage', function ($request) {
+
+            $this->frontendController->sendMessage($request->first_name, $request->surname, $request->email, $request->tel,$request->object, $request->message);
         });
 
 

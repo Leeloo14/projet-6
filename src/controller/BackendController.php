@@ -5,6 +5,8 @@ namespace Projet6\Controller;
 use Projet6\Dao\AnnonceDao;
 use Projet6\Dao\MemberDao;
 use Projet6\Model\Member;
+use Projet6\Model\Messaging;
+use Projet6\Dao\MessagingDao;
 use Projet6\Services\SessionService;
 use Twig_Environment;
 use Twig_Extension_Debug;
@@ -22,6 +24,7 @@ class BackendController
     {
         $this->annonceDao = new AnnonceDao();
         $this->memberDao = new MemberDao();
+        $this->messagingDao = new MessagingDao();
         $this->sessionService = new SessionService();
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem(__DIR__ . '/../view'), array('debug' => true));
         $this->template->addExtension(new Twig_Extension_Debug());
@@ -33,7 +36,7 @@ class BackendController
         $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author);;
 
         if ($affectedLines === false) {
-            throw new \Exception('Impossible d\'ajouter l\'episode !');
+            throw new \Exception('Impossible d\'ajouter l\'annonce !');
         } else {
             echo $this->template->render('backend/my-annonces.html.twig');
         }
@@ -114,7 +117,13 @@ class BackendController
         echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
     }
 
-
+    /**messages recus*/
+    function listMassages()
+    {
+        $messagingDao = new MessagingDao();
+        $messagings = $messagingDao->getAllMessages();
+        echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
+    }
 
 
 
@@ -262,6 +271,26 @@ class BackendController
                 throw new \Exception('Impossible de supprimer l\annonce !');
             } else {
                 echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
+
+            }
+        }
+    }
+
+
+
+
+    /** permet de supprimer une annonce */
+
+    function deleteMessage($messagingId)
+    {
+        {
+            $messagingDao = new MessagingDao();
+            $affectedLines = $this->messagingDao->deleteMessage($messagingId);
+            $messagings = $messagingDao->getAllMessages();
+            if ($affectedLines === false) {
+                throw new \Exception('Impossible de supprimer le message !');
+            } else {
+                echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
 
             }
         }

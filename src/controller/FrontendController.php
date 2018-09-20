@@ -4,6 +4,7 @@ namespace Projet6\Controller;
 
 use Projet6\dao\AnnonceDao;
 use Projet6\dao\MemberDao;
+use Projet6\Dao\MessagingDao;
 use Projet6\Services\SessionService;
 use Twig_Environment;
 use Twig_Extension_Debug;
@@ -13,6 +14,7 @@ class FrontendController
 {
     private $annonceDao;
     private $memberDao;
+    private $messagingDao;
     private $sessionService;
     private $template;
 
@@ -21,6 +23,7 @@ class FrontendController
         $this->annonceDao = new AnnonceDao();
         $this->sessionService = new SessionService();
         $this->memberDao = new MemberDao();
+        $this->messagingDao = new MessagingDao();
         $this->template = new Twig_Environment(new Twig_Loader_Filesystem(__DIR__ . '/../view'), array('debug' => true));
         $this->template->addExtension(new Twig_Extension_Debug());
     }
@@ -98,7 +101,25 @@ class FrontendController
         }
     }
 
+    /** Permet d'envoyer un message*/
+    function sendMessage($first_name,  $surname, $email, $tel,$object, $message)
+    {
+        $affectedLines = $this->messagingDao->createMessage($first_name,  $surname, $email, $tel, $object, $message);
 
+        if ($affectedLines === false) {
+            throw new \Exception('Impossible d\'envoyer le message !');
+        } else {
+            echo $this->template->render('frontend/contact.html.twig');
+        }
+    }
+
+    /** permet d'afficher la page de contact*/
+    function displayContact()
+    {
+        {
+            echo $this->template->render('frontend/contact.html.twig');
+        }
+    }
 
 
 
