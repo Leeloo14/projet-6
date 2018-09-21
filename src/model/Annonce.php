@@ -21,7 +21,6 @@ class Annonce
         if (isset($annonceData['id'])) {
             $this->id = $annonceData['id'];
         }
-
         if (isset($annonceData['title'])) {
             $this->title = $annonceData['title'];
         }
@@ -30,12 +29,10 @@ class Annonce
         }
         if (isset($annonceData['typeof'])) {
             $this->typeof = $annonceData['typeof'];
-
         }
         if (isset($annonceData['tel'])) {
             $this->tel = $annonceData['tel'];
         }
-
         if (isset($annonceData['email'])) {
             $this->email = $annonceData['email'];
         }
@@ -51,8 +48,6 @@ class Annonce
         if (isset($annonceData['spam'])) {
             $this->spam = $annonceData['spam'];
         }
-
-
     }
 
     public function getId()

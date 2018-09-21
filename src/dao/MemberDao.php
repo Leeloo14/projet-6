@@ -25,7 +25,6 @@ class MemberDao extends BaseDao
         return $requser->fetchObject(Member::class);
     }
 
-    /*******************************/
     /** Permet de recuperer l'admin pour la connexion*/
     public function getByEmailMaster($mailconnect)
     {

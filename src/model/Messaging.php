@@ -18,38 +18,30 @@ class Messaging
         if (isset($messagingData['id'])) {
             $this->id = $messagingData['id'];
         }
-
         if (isset($messagingData['first_name'])) {
             $this->firstName = $messagingData['first_name'];
         }
         if (isset($messagingData['surname'])) {
             $this->surname = $messagingData['surname'];
         }
-
         if (isset($messagingData['email'])) {
             $this->email = $messagingData['email'];
         }
-
         if (isset($messagingData['tel'])) {
             $this->tel = $messagingData['tel'];
         }
         if (isset($messagingData['message'])) {
             $this->message = $messagingData['message'];
-
         }
-
         if (isset($messagingData['creation_date'])) {
             $this->creationDate = date_create_from_format('Y-m-d H:i:s', $messagingData['creation_date']);
         }
         if (isset($messagingData['object'])) {
             $this->object = $messagingData['object'];
-
         }
         if (isset($messagingData['status'])) {
             $this->status = $messagingData['status'];
-
         }
-
     }
 
     public function getId()

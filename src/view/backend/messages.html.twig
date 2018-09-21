@@ -34,7 +34,7 @@
 
                         <td>
                             <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
-                                    data-target="#myModal3" >
+                                    data-target="#myModal3  ">
                                 Motif
                             </button>
                         </td>
@@ -51,7 +51,7 @@
 
                                         <p> {{ messaging.firstName|raw }}</p>
                                         <p> {{ messaging.surname|raw }}</p>
-                                        <p> <a href="mailto:{{ messaging.email }}">{{ messaging.email|raw }}</a></p>
+                                        <p><a href="mailto:{{ messaging.email }}">{{ messaging.email|raw }}</a></p>
                                         <p> {{ messaging.tel|raw }}</p>
                                         <p> {{ messaging.object|raw }}</p>
                                         <p> {{ messaging.message|raw }}</p>
@@ -65,17 +65,24 @@
                                 </div>
                             </div>
                         </div>
+                        <td>
 
-                       <td>
-                           <form method="POST" action="/deleteadminmessage">
-                           <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>
-                        <input type="hidden" id="action" name="action" value="deleteMessage"/>
-                        <div>
+                            </form>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning  text-white" href="/editstatus/{{ messaging.id }}">Modifier</a>
+                        </td>
+                        <td>
+                            <form method="POST" action="/deleteadminmessage">
+                                <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>
+                                <input type="hidden" id="action" name="action" value="deleteMessage"/>
+                                <div>
 
-                            <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
-                            </button>
-                        </div>
-                        </form></td>
+                                    <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

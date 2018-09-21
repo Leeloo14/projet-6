@@ -1,0 +1,35 @@
+{% extends "backend/template2.html.twig" %}
+
+{% block head %}
+    <title>Status message</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class="global-container">
+        <div class="container container-white rounded mt-3 mb-3">
+
+            <div class="container-white mt-5 rounded ">
+                <div class=" container">
+                    <form method="POST" action="/updatestatus">
+                        <h2 class="pt-2">Vous souhaitez modifier le status du message</h2>
+                        <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>
+                        <input type="hidden" id="action" name="action" value="updateMessage"/>
+                        <div>
+                            <div class="text-left mb-3">
+                                <label for="status">status actuel du message</label><br/>
+                                <textarea id="status" name="status" class="form-control">{{ messaging.status }}</textarea>
+                            </div>
+                            <button class="btn btn-success mt-2 mb-2 " type="submit">valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

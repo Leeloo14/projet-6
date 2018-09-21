@@ -72,14 +72,13 @@ class FrontendController
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
-    /**retourne l'annonce séléctionné */
+    /**retourne l'annonce séléctionnée */
     function city ($annonceId)
     {
         $annonces = $this->annonceDao->getCity();
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
-
 
     /** permet d'éditer un motif de signalement pour signaler une annonce */
     function spamEditAnnonce($annonceId)
@@ -120,9 +119,4 @@ class FrontendController
             echo $this->template->render('frontend/contact.html.twig');
         }
     }
-
-
-
-
-
 }

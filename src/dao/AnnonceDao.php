@@ -25,7 +25,7 @@ class AnnonceDao extends BaseDao
         return new Annonce($annonceData);
     }
 
-    /**retourne un épisode*/
+    /**retourne une annonce*/
     public function getannonce($annonceId)
     {
         $db = $this->dbConnect();
@@ -63,7 +63,7 @@ class AnnonceDao extends BaseDao
         return $annonces;
     }
 
-    /**Retourne les annonces type */
+    /**Retourne les annonces type propose*/
     public function getTypeOfAnnoncesGive()
     {
         $db = $this->dbConnect();
@@ -76,7 +76,7 @@ class AnnonceDao extends BaseDao
         }
         return $annonces;
     }
-    /****************************************/
+
     /**Retourne les annonces signalées */
     public function getSpamAnnonces()
     {
@@ -90,66 +90,7 @@ class AnnonceDao extends BaseDao
         }
         return $annonces;
     }
-    /*************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /****************************************/
-    /**Retourne les annonces liées à l'email */
-    public function getAnnoncesMember()
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT annonces.id,annonces.title,annonces.content,annonces.typeof,annonces.tel,annonces.email,annonces.city,annonces.author,annonces.creation_date,annonces.spam
-FROM `annonces`,`member`
-WHERE annonces.email = member.email');
-        $req->execute();
-        $annoncesDB = $req->fetchAll();
-        $annonces = [];
-        foreach ($annoncesDB as $annonceDB) {
-            array_push($annonces, new Annonce($annonceDB));
-        }
-        return $annonces;
-    }
-    /*************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /****************************************************************************/
     /** renvoie la liste des annonces liées a un utilisateur */
     /**A définir*/
     public function getMyAnnonces()
@@ -157,7 +98,7 @@ WHERE annonces.email = member.email');
         $db = $this->dbConnect();
 
     }
-
+/*********************************************************************************/
     /** permet de mettre à jour une annonce */
     public function updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
@@ -183,6 +124,7 @@ WHERE annonces.email = member.email');
 
 
     }
+
     /** permet de signaler une annonce */
     public function signalAnnonce($id, $spam)
     {
@@ -192,7 +134,6 @@ WHERE annonces.email = member.email');
         return $affectedLine;
     }
 
-
     /** permet de supprimer une annonce */
     public function deleteAnnonce($annonceId)
     {
@@ -200,6 +141,4 @@ WHERE annonces.email = member.email');
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');
         $req->execute(array($annonceId));
     }
-
-
 }
