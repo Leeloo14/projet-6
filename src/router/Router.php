@@ -44,7 +44,7 @@ class Router
             $this->backendController->displayMyAnnonces();
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
-            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author);
+            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image);
         });
         $this->klein->respond('POST', '/spamannonce', function ($request) {
             $this->frontendController->spamAnnonce($request->id, $request->spam);
@@ -75,9 +75,17 @@ class Router
         $this->klein->respond('POST', '/disconnect', function () {
             $this->backendController->disconnect();
         });
-        $this->klein->respond('GET', '/spamannoncesview', function () {
-            $this->backendController->listAnnoncesSpam();
+
+
+
+
+        $this->klein->respond('GET', '/spamannoncesview', function ($request) {
+            $this->backendController->listAnnoncesSpam($request->id);
         });
+
+
+
+
         $this->klein->respond('POST', '/delete', function ($request) {
             $this->backendController->deleteAdminAnnonce($request->id);
         });
@@ -90,7 +98,7 @@ class Router
         $this->klein->respond('GET', '/userpanelmaster', function () {
             $this->backendController->displayUserPanelMaster();
         });
-        $this->klein->respond('POST', '/usermaster', function ($request) {
+               $this->klein->respond('POST', '/usermaster', function ($request) {
             $this->backendController->reqUserMaster($request->mailconnect, $request->mdpconnect);
         });
         $this->klein->respond('GET', '/contact', function () {

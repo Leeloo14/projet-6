@@ -55,7 +55,7 @@ class BackendController
         /** @var Member $user */
         $user = $this->memberDao->getByEmail($mailconnect);
         if (password_verify($mdpconnect, $user->getPass())) {
-            $this->sessionService->storeCookie();
+            $this->sessionService->storeCookie($user->getId());
             header('Location: /userpanel');
             die();
         }
@@ -100,8 +100,9 @@ class BackendController
     /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
     function displayUserPanel()
     {
-        if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('backend/user-view.html.twig');
+        if ($user = $this->sessionService->isClientAuthorized()) {
+           /** echo $this->template->render('backend/user-view.html.twig');*/
+           var_dump($user);
         } else {
             echo $this->template->render('frontend/connexion.html.twig');;
         }
@@ -128,11 +129,15 @@ class BackendController
         }
     }
 
+
+
+
+
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author)
+    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image)
     {
         if ($this->sessionService->isClientAuthorized()) {
-            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author);;
+            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image);;
 
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'ajouter l\'annonce !');
@@ -140,169 +145,175 @@ class BackendController
                 echo $this->template->render('backend/my-annonces.html.twig');
             }
         } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
+
+            echo $this->template->render('frontend/connexion.html.twig');
         }
     }
-
-    /** permet de modifier une annonce existante */
-    function editAnnonce($annonceId)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $annonce = $annonceDao->getannonce($annonceId);
-            echo $this->template->render('backend/user-modify-annonce.html.twig', array('annonce' => $annonce));
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /** permet valider les modifications d'une annonce existante */
-    function replaceAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $affectedLines = $this->annonceDao->updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city);
-            $annonces = $annonceDao->getMyAnnonces();
-            if ($affectedLines === false) {
-                throw new \Exception('Impossible de modifier l/annonce!');
+        /** permet de modifier une annonce existante */
+        function editAnnonce($annonceId)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $annonceDao = new AnnonceDao();
+                $annonce = $annonceDao->getannonce($annonceId);
+                echo $this->template->render('backend/user-modify-annonce.html.twig', array('annonce' => $annonce));
             } else {
-                header('location: index.php?action=displayPanelUser');
+
+                echo $this->template->render('frontend/connexion.html.twig');
             }
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /** permet d'afficher la page permettant de creer une nouvelle annonce*/
-    function displayNewAnnonce()
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('backend/new-annonce-view.html.twig');
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /** permet d'afficher la page contenant les annonces de l'utilisateur*/
-    function displayMyAnnonces()
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('backend/my-annonces.html.twig');
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/connexion.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /**annonces signalées*/
-    function listAnnoncesSpam()
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $annonces = $annonceDao->getSpamAnnonces();
-            echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
         }
 
-
-    }
-
-    /**messages recus*/
-    function listMessages($id)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $messagingDao = new MessagingDao();
-            $messagings = $messagingDao->getAllMessages();
-            $messaging = $messagingDao->getMessageById($id);
-            echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings, 'messaging' => $messaging));
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /********************************************************/
-    /** permet d'éditer le staus d'un message */
-    function editStatusMessage($id)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $messagings = $this->messagingDao->getAllMessages();
-            $messaging = $this->messagingDao->getMessageById($id);
-            echo $this->template->render('backend/message-status.html.twig', array('messaging' => $messaging, 'messagings' => $messagings));
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
-        }
-    }
-
-    /** permet d'envoyer le mettre à jour le status d'un message */
-    function updateStatus($id, $status)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $messagings = $this->messagingDao->getAllMessages();
-            $affectedLines = $this->messagingDao->updateMessage($id, $status);
-            if ($affectedLines === false) {
-                throw new \Exception('Impossible de modifier le status !');
+        /** permet valider les modifications d'une annonce existante */
+        function replaceAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $annonceDao = new AnnonceDao();
+                $affectedLines = $this->annonceDao->updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city);
+                $annonces = $annonceDao->getMyAnnonces();
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de modifier l/annonce!');
+                } else {
+                    header('location: index.php?action=displayPanelUser');
+                }
             } else {
-                echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
 
+                echo $this->template->render('frontend/connexion.html.twig');
             }
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
         }
-    }
 
-    /*********************************************************************/
-
-
-    /** permet de supprimer une annonce signalée */
-    function deleteAdminAnnonce($annonceId)
-
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
-            $annonces = $annonceDao->getSpamAnnonces();
-
-            if ($affectedLines === false) {
-                throw new \Exception('Impossible de supprimer l\annonce !');
+        /** permet d'afficher la page permettant de creer une nouvelle annonce*/
+        function displayNewAnnonce()
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                echo $this->template->render('backend/new-annonce-view.html.twig');
             } else {
-                echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
 
+                echo $this->template->render('frontend/connexion.html.twig');
             }
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
         }
-    }
 
-
-    /** permet de supprimer un message */
-
-    function deleteMessage($messagingId)
-
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $messagingDao = new MessagingDao();
-            $affectedLines = $this->messagingDao->deleteMessage($messagingId);
-            $messagings = $messagingDao->getAllMessages();
-            if ($affectedLines === false) {
-                throw new \Exception('Impossible de supprimer le message !');
+        /** permet d'afficher la page contenant les annonces de l'utilisateur*/
+        function displayMyAnnonces()
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                echo $this->template->render('backend/my-annonces.html.twig');
             } else {
-                echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
 
+                echo $this->template->render('frontend/connexion.html.twig');
             }
-        } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
-            echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
         }
 
+        /**annonces signalées*/
+        function listAnnoncesSpam($id)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $annonceDao = new AnnonceDao();
+                $annonces = $annonceDao->getSpamAnnonces();
+                $annonce = $annonceDao->getAnnonceById($id);
+                echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces, 'annonce' => $annonce));
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+
+
+        }
+
+        /**messages recus*/
+        function listMessages($id)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $messagingDao = new MessagingDao();
+                $messagings = $messagingDao->getAllMessages();
+                $messaging = $messagingDao->getMessageById($id);
+                echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings, 'messaging' => $messaging));
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+        }
+
+        /********************************************************/
+        /** permet d'éditer le staus d'un message */
+        function editStatusMessage($id)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $messagings = $this->messagingDao->getAllMessages();
+                $messaging = $this->messagingDao->getMessageById($id);
+                echo $this->template->render('backend/message-status.html.twig', array('messaging' => $messaging, 'messagings' => $messagings));
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+        }
+
+        /** permet d'envoyer le mettre à jour le status d'un message */
+        function updateStatus($messagingId, $status)
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $messagings = $this->messagingDao->getAllMessages();
+                $affectedLines = $this->messagingDao->updateMessage($messagingId, $status);
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de modifier le status !');
+                } else {
+                    echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
+
+                }
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+        }
+
+        /*********************************************************************/
+
+
+        /** permet de supprimer une annonce signalée */
+        function deleteAdminAnnonce($annonceId)
+
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $annonceDao = new AnnonceDao();
+                $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
+                $annonces = $annonceDao->getSpamAnnonces();
+
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de supprimer l\annonce !');
+                } else {
+                    echo $this->template->render('backend/spam.html.twig', array('annonces' => $annonces));
+
+                }
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+        }
+
+
+        /** permet de supprimer un message */
+
+        function deleteMessage($messagingId)
+
+        {
+            if ($this->sessionService->isClientAuthorized()) {
+                $messagingDao = new MessagingDao();
+                $affectedLines = $this->messagingDao->deleteMessage($messagingId);
+                $messagings = $messagingDao->getAllMessages();
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de supprimer le message !');
+                } else {
+                    echo $this->template->render('backend/messages.html.twig', array('messagings' => $messagings));
+
+                }
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+
+        }
+
+
+
+
+
+
     }
-}

@@ -13,6 +13,7 @@ class Messaging
     private $creationDate;
     private $object;
     private $status;
+
     function __construct($messagingData)
     {
         if (isset($messagingData['id'])) {

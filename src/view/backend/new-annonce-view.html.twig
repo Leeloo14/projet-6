@@ -11,14 +11,14 @@
     <div class="global-container">
 
         <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
-           <div >
+            <div>
 
-            <h2>créer une nouvelle annonce</h2>
+                <h2>créer une nouvelle annonce</h2>
 
-           </div>
+            </div>
             <form action="/addannonce" method="post">
                 <div>
-                    <input  type="hidden" id="action" name="action" value="createAnnonce"/>
+                    <input type="hidden" id="action" name="action" value="createAnnonce"/>
                 </div>
                 <div class="text-left mb-3">
                     <label for="author">Votre nom</label><br/>
@@ -31,17 +31,22 @@
                         <option value="recherche">Je recherche</option>
                         <option value="propose">Je propose</option>
                     </select>
-                </div >
+                </div>
                 <div class="text-left mb-3">
                     <label for="title">titre</label><br/>
                     <input type="text" id="title" name="title" class="form-control"/>
                 </div>
+                <div class="text-left mb-3">
+                    <label for="image">Sélectionner une photo</label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+                    <input type="file" id="image" name="image" multiple class="form-control">
 
+                </div>
 
                 <div class="text-left mb-3">
                     <label for="content">texte</label><br/>
                     <textarea id="content" name="content" class="form-control"></textarea>
-                </div >
+                </div>
                 <div class="text-left mb-3">
                     <label for="city">ville</label><br/>
                     <input id="city" name="city" class="form-control">

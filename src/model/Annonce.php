@@ -14,6 +14,7 @@ class Annonce
     private $author;
     private $creationDate;
     private $spam;
+    private $image;
 
 
     function __construct($annonceData)
@@ -47,6 +48,9 @@ class Annonce
         }
         if (isset($annonceData['spam'])) {
             $this->spam = $annonceData['spam'];
+        }
+        if (isset($annonceData['image'])) {
+            $this->image = $annonceData['image'];
         }
     }
 
@@ -101,6 +105,10 @@ class Annonce
     {
         return $this->spam;
     }
+    public function getImage()
+    {
+        return $this->image;
+    }
 
 
     public function setId($id)
@@ -153,6 +161,10 @@ class Annonce
     public function setSpam($spam)
     {
         $this->spam = $spam;
+    }
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
 }

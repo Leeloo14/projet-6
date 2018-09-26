@@ -8,6 +8,10 @@ class Member
     private $pseudo;
     private $pass;
     private $email;
+    private $dateInsription;
+
+
+
 
     public function getId()
     {
@@ -29,6 +33,11 @@ class Member
         return $this->email;
     }
 
+    public function getDateIncription()
+    {
+        return $this->dateInsription;
+    }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -47,5 +56,10 @@ class Member
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInsription = $dateInscription;
     }
 }

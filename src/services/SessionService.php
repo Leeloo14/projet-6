@@ -14,19 +14,20 @@ class SessionService
             return false;
         }
         try {
-            JWT::decode($_COOKIE['projet6'], file_get_contents('certs/jwt.pub'), ['RS256']);
-            return true;
+            return JWT::decode($_COOKIE['projet6'], file_get_contents('certs/jwt.pub'), ['RS256']);
+
         } catch (ExpiredException $e){
          return false;
         }
     }
 
-    function storeCookie()
+    function storeCookie($id)
     {
         $token = array(
             "iss" => "normandhelp",
             "iat" => time(),
-            "exp" => time() + 3600
+            "exp" => time() + 3600,
+            "id" => $id,
         );
         $jwt = JWT::encode($token, file_get_contents('certs/jwt.key'), 'RS256');
         setcookie('projet6', $jwt); // Stock un cookie qui contient le temps d'expiration
