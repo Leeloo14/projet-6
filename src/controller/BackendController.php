@@ -152,9 +152,9 @@ class BackendController
                     if (in_array($extension_upload, $extensions_autorisees))
                     {
 
-                      move_uploaded_file($_FILES['image']['tmp_name'], $info ='./public/upload/' . $file);
+                      move_uploaded_file($_FILES['image']['tmp_name'], $info = './public/upload/' . $file);
             var_dump($image);
-                        echo "L'envoi a bien été effectué !";
+
                     }
                 }
             }

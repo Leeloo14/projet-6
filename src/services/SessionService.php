@@ -37,5 +37,7 @@ class SessionService
     {
         setcookie('projet6', 'connexion-pr6', time() - 1);
     }
-
+ function uploadPicture()
+ {
+ }
 }
