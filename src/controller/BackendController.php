@@ -131,9 +131,10 @@ class BackendController
 
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image)
+    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image,$member_id)
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
+
 
             $image = $_FILES ['image']['name'];
 
@@ -158,8 +159,9 @@ class BackendController
                     }
                 }
             }
-            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image = $info);
-            var_dump($info);
+            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image = $info ,$member_id = $user->id);
+            var_dump($info,$user);
+
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'ajouter l\'annonce !');
             } else {

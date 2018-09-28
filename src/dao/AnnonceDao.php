@@ -7,12 +7,12 @@ use Projet6\Model\Annonce;
 class AnnonceDao extends BaseDao
 {
     /**Creer une nouvelle annonce*/
-    public function createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image)
+    public function createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id)
     {
 
         $db = $this->dbConnect();
-        $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date,image) VALUES(?, ?,?,?,?,?,?, NOW(),?)');
-        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image));
+        $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date,image,member_id) VALUES(?, ?,?,?,?,?,?, NOW(),?,?)');
+        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image,$member_id ));
         return $affectedLines;
 
 

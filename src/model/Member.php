@@ -38,6 +38,7 @@ class Member
         return $this->dateInsription;
     }
 
+
     public function setId($id)
     {
         $this->id = $id;
@@ -62,4 +63,5 @@ class Member
     {
         $this->dateInsription = $dateInscription;
     }
+
 }

@@ -15,6 +15,7 @@ class Annonce
     private $creationDate;
     private $spam;
     private $image;
+    private $memberId;
 
 
     function __construct($annonceData)
@@ -51,6 +52,9 @@ class Annonce
         }
         if (isset($annonceData['image'])) {
             $this->image = $annonceData['image'];
+        }
+        if (isset($annonceData['member'])) {
+            $this->memberId = $annonceData['member'];
         }
     }
 
@@ -110,7 +114,10 @@ class Annonce
         return $this->image;
     }
 
-
+    public function getMemberId()
+    {
+        return $this->memberId;
+    }
     public function setId($id)
     {
         $this->id = $id;
@@ -165,6 +172,10 @@ class Annonce
     public function setImage($image)
     {
         $this->image = $image;
+    }
+    public function setMemberId($memberId)
+    {
+        $this->MemberId = $memberId;
     }
 
 }

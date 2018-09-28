@@ -44,7 +44,7 @@ class Router
             $this->backendController->displayMyAnnonces();
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
-            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image);
+            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image,$request->member_id);
 
 
         });
