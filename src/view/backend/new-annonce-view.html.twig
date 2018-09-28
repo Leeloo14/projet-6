@@ -16,7 +16,7 @@
                 <h2>créer une nouvelle annonce</h2>
 
             </div>
-            <form action="/addannonce" method="post">
+            <form action="/addannonce" method="post" enctype="multipart/form-data" >
                 <div>
                     <input type="hidden" id="action" name="action" value="createAnnonce"/>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="text-left mb-3">
                     <label for="image">Sélectionner une photo</label>
-                    <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="250000"/>
                     <input type="file" id="image" name="image" multiple class="form-control">
 
                 </div>

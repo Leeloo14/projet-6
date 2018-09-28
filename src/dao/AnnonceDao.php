@@ -9,14 +9,20 @@ class AnnonceDao extends BaseDao
     /**Creer une nouvelle annonce*/
     public function createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image)
     {
+
         $db = $this->dbConnect();
         $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date,image) VALUES(?, ?,?,?,?,?,?, NOW(),?)');
         $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image));
         return $affectedLines;
-    }
+
+
+
+        }
+
 
     /**Retourne une annonce suivant son id*/
-    public function getAnnonceById($id)
+    public
+    function getAnnonceById($id)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city, author , creation_date, image FROM annonces WHERE id = ' . $id);
@@ -26,7 +32,8 @@ class AnnonceDao extends BaseDao
     }
 
     /**retourne une annonce*/
-    public function getannonce($annonceId)
+    public
+    function getannonce($annonceId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city,  creation_date, image FROM annonces WHERE id =' . $annonceId);
@@ -36,7 +43,8 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne toutes les annonces*/
-    public function getAllAnnonces()
+    public
+    function getAllAnnonces()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces ORDER BY creation_date');
@@ -50,7 +58,8 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne les annonces type recherche*/
-    public function getTypeOfAnnoncesSearch()
+    public
+    function getTypeOfAnnoncesSearch()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces WHERE typeof = "recherche"');
@@ -64,7 +73,8 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne les annonces type propose*/
-    public function getTypeOfAnnoncesGive()
+    public
+    function getTypeOfAnnoncesGive()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces WHERE typeof = "propose"');
@@ -78,7 +88,8 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne les annonces signalées */
-    public function getSpamAnnonces()
+    public
+    function getSpamAnnonces()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces WHERE spam  IS NOT NULL');
@@ -90,17 +101,21 @@ class AnnonceDao extends BaseDao
         }
         return $annonces;
     }
+
     /****************************************************************************/
     /** renvoie la liste des annonces liées a un utilisateur */
     /**A définir*/
-    public function getMyAnnonces()
+    public
+    function getMyAnnonces()
     {
         $db = $this->dbConnect();
 
     }
-/*********************************************************************************/
+
+    /*********************************************************************************/
     /** permet de mettre à jour une annonce */
-    public function updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
+    public
+    function updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
     {
         $db = $this->dbConnect();
         $annonce = $db->prepare('UPDATE annonces SET title = ?, content = ?,typeof =?, tel = ?, email = ?, city = ? WHERE id = ?');
@@ -109,7 +124,8 @@ class AnnonceDao extends BaseDao
     }
 
     /** Retourne les ville et le nombre d'annonces correspondantes */
-    public function getCity()
+    public
+    function getCity()
     {
 
         $db = $this->dbConnect();
@@ -126,7 +142,8 @@ class AnnonceDao extends BaseDao
     }
 
     /** permet de signaler une annonce */
-    public function signalAnnonce($id, $spam)
+    public
+    function signalAnnonce($id, $spam)
     {
         $db = $this->dbConnect();
         $annonce = $db->prepare('UPDATE annonces SET spam = ? WHERE id = ?');
@@ -135,7 +152,8 @@ class AnnonceDao extends BaseDao
     }
 
     /** permet de supprimer une annonce */
-    public function deleteAnnonce($annonceId)
+    public
+    function deleteAnnonce($annonceId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');

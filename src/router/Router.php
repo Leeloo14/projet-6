@@ -45,6 +45,8 @@ class Router
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
             $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image);
+
+
         });
         $this->klein->respond('POST', '/spamannonce', function ($request) {
             $this->frontendController->spamAnnonce($request->id, $request->spam);
