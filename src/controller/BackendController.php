@@ -131,7 +131,7 @@ class BackendController
 
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image,$member_id)
+    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id)
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
 
@@ -139,28 +139,25 @@ class BackendController
             $image = $_FILES ['image']['name'];
 
 
-            if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
-            {
+            if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0) {
 
-                if ($_FILES['image']['size'] <= 1000000)
-                {
+                if ($_FILES['image']['size'] <= 1000000) {
 
                     $infosfichier = pathinfo($_FILES['image']['name']);
                     $extension_upload = $infosfichier['extension'];
                     $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
                     $name = basename($_FILES['image']['name']);
-                    $file = rand(1,99999). $name. '.' .$extension_upload;
-                    if (in_array($extension_upload, $extensions_autorisees))
-                    {
+                    $file = rand(1, 99999) . $name . '.' . $extension_upload;
+                    if (in_array($extension_upload, $extensions_autorisees)) {
 
-                      move_uploaded_file($_FILES['image']['tmp_name'], $info = './public/upload/' . $file);
-            var_dump($image);
+                        move_uploaded_file($_FILES['image']['tmp_name'], $info = './public/upload/' . $file);
+                        var_dump($image);
 
                     }
                 }
             }
-            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image = $info ,$member_id = $user->id);
-            var_dump($info,$user);
+            $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image = $info, $member_id = $user->id);
+            var_dump($info, $user);
 
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'ajouter l\'annonce !');
@@ -217,14 +214,26 @@ class BackendController
     }
 
     /** permet d'afficher la page contenant les annonces de l'utilisateur*/
-    function displayMyAnnonces()
+    function displayMyAnnonces($user)
     {
-        if ($this->sessionService->isClientAuthorized()) {
-            echo $this->template->render('backend/my-annonces.html.twig');
-        } else {
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $annonceDao = new AnnonceDao();
+            $identity = $user->id;
+            if ($user = $member_id = $identity) {
+                var_dump($member_id, $identity, $identity);
 
-            echo $this->template->render('frontend/connexion.html.twig');
+
+
+                $annonce = $annonceDao->getMyAnnonces($user);
+
+
+                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonce' => $annonce));
+            } else {
+
+                echo $this->template->render('frontend/connexion.html.twig');
+            }
         }
+
     }
 
     /**annonces signalées*/

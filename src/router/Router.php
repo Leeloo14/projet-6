@@ -40,8 +40,8 @@ class Router
         $this->klein->respond('GET', '/newannonce', function () {
             $this->backendController->displayNewAnnonce();
         });
-        $this->klein->respond('GET', '/myannonces', function () {
-            $this->backendController->displayMyAnnonces();
+        $this->klein->respond('GET', '/myannonces', function ($request) {
+            $this->backendController->displayMyAnnonces($request->user);
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
             $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image,$request->member_id);
