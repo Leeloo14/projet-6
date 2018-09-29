@@ -224,10 +224,10 @@ class BackendController
 
 
 
-                $annonce = $annonceDao->getMyAnnonces($user);
+                $annonces = $annonceDao->getMyAnnonces($user);
 
 
-                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonce' => $annonce));
+                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonces' => $annonces));
             } else {
 
                 echo $this->template->render('frontend/connexion.html.twig');

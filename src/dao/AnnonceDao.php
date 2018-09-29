@@ -105,13 +105,11 @@ class AnnonceDao extends BaseDao
     /****************************************************************************/
     /** renvoie la liste des annonces liées a un utilisateur */
     /**A définir*/
-    public
-    function getMyAnnonces($user)
+    public function getMyAnnonces($user)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM member LEFT JOIN annonces ON member.id = ? = annonces.member_id WHERE = member_id ="'.$user.'"');
-        var_dump($user);
-        $req->execute();
+        $req = $db->prepare('SELECT * FROM annonces a LEFT JOIN member m ON a.member_id = m.id  WHERE member_id = ?');
+        $req->execute(array($user));
         $annoncesDB = $req->fetchAll();
         $annonces = [];
         foreach ($annoncesDB as $annonceDB) {
