@@ -1,28 +1,35 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: projet6
--- ------------------------------------------------------
--- Server version	5.7.21
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  sam. 29 sep. 2018 à 18:36
+-- Version du serveur :  5.7.21
+-- Version de PHP :  5.6.35
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `annonces`
+-- Base de données :  `projet6`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `annonces`
 --
 
 DROP TABLE IF EXISTS `annonces`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `annonces` (
+CREATE TABLE IF NOT EXISTS `annonces` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
@@ -33,53 +40,78 @@ CREATE TABLE `annonces` (
   `author` varchar(255) NOT NULL,
   `creation_date` datetime NOT NULL,
   `spam` varchar(255) DEFAULT NULL,
+  `image` varchar(255) NOT NULL,
+  `member_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=MyISAM AUTO_INCREMENT=183 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `annonces`
+-- Déchargement des données de la table `annonces`
 --
 
-LOCK TABLES `annonces` WRITE;
-/*!40000 ALTER TABLE `annonces` DISABLE KEYS */;
-INSERT INTO `annonces` VALUES (49,'','','recherche','','','','','2018-09-18 15:36:35',NULL),(52,'test','blabla','propose','0643007965','anne.gaste@hotmail.fr','corbeil-essonnes','bibi','2018-09-19 22:33:32',NULL);
-/*!40000 ALTER TABLE `annonces` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `annonces` (`id`, `title`, `content`, `typeof`, `tel`, `email`, `city`, `author`, `creation_date`, `spam`, `image`, `member_id`) VALUES
+(181, 'test', 'xx', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'corbeil-essonnes', 'bibi', '2018-09-28 20:50:50', NULL, './public/upload/79331images.jpg.jpg', 0),
+(180, 'episode test', 'ccc', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'corbeil-essonnes', 'claire', '2018-09-28 20:30:20', NULL, './public/upload/30836images.jpg.jpg', 0),
+(179, 'episode test', 'ccc', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'corbeil-essonnes', 'claire', '2018-09-28 20:24:35', NULL, './public/upload/86992images.jpg.jpg', 0),
+(178, 'episode test', 'ccc', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'corbeil-essonnes', 'claire', '2018-09-28 20:23:50', NULL, './public/upload/', 0),
+(177, 'episode test', 'ccc', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'corbeil-essonnes', 'claire', '2018-09-28 20:23:36', NULL, './public/upload/', 0),
+(176, 'bricolage', 'nn', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'potigny', 'bibi', '2018-09-28 20:08:26', NULL, './public/upload/82395licorne.jpg.jpg', 0),
+(175, 'peinture', 'recherche peintre', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'potigny', 'anne', '2018-09-28 20:05:25', NULL, './public/upload/67978images.jpg.jpg', 0),
+(182, 'test', 'x', 'recherche', '0643007965', 'anne.gaste@hotmail.fr', 'potigny', 'bibi', '2018-09-28 21:08:40', NULL, './public/upload/80584images.jpg.jpg', 18);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+-- --------------------------------------------------------
 
--- Table structure for table `member`
+--
+-- Structure de la table `member`
 --
 
 DROP TABLE IF EXISTS `member`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `member` (
+CREATE TABLE IF NOT EXISTS `member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(255) NOT NULL,
   `pass` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `date_inscription` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `member`
+-- Déchargement des données de la table `member`
 --
 
-LOCK TABLES `member` WRITE;
-/*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (14,'leeloo','$2y$10$uyXBAlbLxOF14uaHyCcP.u5uIqXsuJE/hGAOzS4ptPHF10D6O5ki.','anne.gaste@hotmail.fr','2018-09-13'),(15,'leeloo','$2y$10$n7cTTdJPCI1xStdB/weP0ujJZpxn023AI9kqNZIS/ENfDVM8R0dLC','master@hotmail.fr','2018-09-17'),(16,'leeloo','$2y$10$OrDqyeB/FbbFQeo2CAhPIu7wgXX93R1utzs48RctuPRB0QDyAn6QS','master2@hotmail.fr','2018-09-17'),(17,'leeloo','$2y$10$LFzIJ2PZZPwQ9ftrysc6D.fw0NwHOJSHe7xOxnhhjQfvp3TnoDHt6','anne.gaste@hotmail.fr','2018-09-19');
-/*!40000 ALTER TABLE `member` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `member` (`id`, `pseudo`, `pass`, `email`, `date_inscription`) VALUES
+(18, 'leeloo', '$2y$10$IJ49h.aorVDonFT9IFOe3Oiz0lTPZEWTWG7EnoXZWHmLMqoZ0KqiO', 'master2@hotmail.fr', '2018-09-20');
 
--- Dump completed on 2018-09-19 23:15:57
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messaging`
+--
+
+DROP TABLE IF EXISTS `messaging`;
+CREATE TABLE IF NOT EXISTS `messaging` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `surname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `object` varchar(50) NOT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `messaging`
+--
+
+INSERT INTO `messaging` (`id`, `first_name`, `surname`, `email`, `tel`, `message`, `creation_date`, `object`, `status`) VALUES
+(70, 'anne', 'ddd', 'anne.gaste@hotmail.fr', '0643007965', 'cc', '2018-09-21 14:17:03', 'tesssssssst', 'New'),
+(64, 'prenom', 'nom', 'mail', 'tel', 'message\r\n', '2018-09-20 16:47:47', 'motif', '?'),
+(71, 'anne', 'gasté', 'anne.gaste@hotmail.fr', '0643007965', 'uuuuu', '2018-09-26 22:10:37', 'tesssssssst', 'New');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
