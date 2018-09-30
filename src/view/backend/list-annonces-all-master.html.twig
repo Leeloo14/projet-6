@@ -33,7 +33,7 @@
                                     <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
                                     <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter mon annonce</a></td>
                                     <td>
-                                        <form method="POST" action="/delete">
+                                        <form method="POST" action="/deletem">
 
                                             <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
                                             <input type="hidden" id="action" name="action" value="deleteAnnonce"/>

@@ -131,7 +131,7 @@ class BackendController
 
 
     /** Permet de creer une nouvelle annonce*/
-    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id,$annonceId)
+    function addAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id, $annonceId)
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
 
@@ -178,10 +178,13 @@ class BackendController
             }
         }
     }
-function listAnnoncesAllMaster (){
-    $annonces = $this->annonceDao->getAllAnnonces();
-    echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces));
-}
+
+    function listAnnoncesAllMaster()
+    {
+        $annonces = $this->annonceDao->getAllAnnonces();
+        echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces));
+    }
+
     /** permet de modifier une annonce existante */
     function editAnnonce($annonceId)
     {
@@ -236,12 +239,11 @@ function listAnnoncesAllMaster (){
                 var_dump($member_id, $identity, $identity);
 
 
-
                 $annonces = $annonceDao->getMyAnnonces($user);
                 $annonce = $this->annonceDao->getAnnonceById($annonceId);
                 var_dump($annonceId);
 
-                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonces' => $annonces, 'annonce'=> $annonce));
+                echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces, 'annonce' => $annonce));
             } else {
 
                 echo $this->template->render('frontend/connexion.html.twig');
@@ -337,24 +339,54 @@ function listAnnoncesAllMaster (){
     }
 
     /** permet de supprimer une annonce signalée utilisateur*/
-    function deleteAdminAnnonceUser($annonceId, $user)
+    function deleteAnnonceUser($annonceId, $user)
+
+    {
+        if ($user = $this->sessionService->isClientAuthorized()) {
+
+            $annonceDao = new AnnonceDao();
+            $identity = $user->id;
+
+            if ($user = $member_id = $identity) {
+                var_dump($member_id, $identity, $identity);
+
+
+                $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
+                $annonces = $annonceDao->getMyAnnonces($user);
+                $annonce = $this->annonceDao->getAnnonceById($annonceId);
+
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de supprimer l\annonce !');
+                } else {
+                    echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces, 'annonce' => $annonce));
+
+                }
+            } else {
+
+                echo $this->template->render('frontend/master.html.twig');
+            }
+        }
+    }
+
+    function deleteAnnonceMaster($annonceId)
 
     {
         if ($this->sessionService->isClientAuthorized()) {
             $annonceDao = new AnnonceDao();
             $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
-            $annonces = $annonceDao->getMyAnnonces($user);
-
+            $annonces = $annonceDao->getAllAnnonces();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
             if ($affectedLines === false) {
-                throw new \Exception('Impossible de supprimer l\annonce !');
+                throw new \Exception('Impossible de supprimer le message !');
             } else {
-                echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces));
+                echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces, 'annonce' => $annonce));
 
             }
         } else {
 
             echo $this->template->render('frontend/master.html.twig');
         }
+
     }
 
 

@@ -95,7 +95,10 @@ class Router
             $this->backendController->deleteAdminAnnonce($request->id);
         });
         $this->klein->respond('POST', '/deleteu', function ($request) {
-            $this->backendController->deleteAdminAnnonceUser($request->id, $request->user);
+            $this->backendController->deleteAnnonceUser($request->id, $request->user);
+        });
+        $this->klein->respond('POST', '/deletem', function ($request) {
+            $this->backendController->deleteAnnonceMaster($request->id, $request->user);
         });
         $this->klein->respond('POST', '/deleteadminmessage', function ($request) {
             $this->backendController->deleteMessage($request->id);
