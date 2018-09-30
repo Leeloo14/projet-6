@@ -214,20 +214,22 @@ class BackendController
     }
 
     /** permet d'afficher la page contenant les annonces de l'utilisateur*/
-    function displayMyAnnonces($user)
+    function displayMyAnnonces($user, $annonceId)
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
             $annonceDao = new AnnonceDao();
             $identity = $user->id;
+
             if ($user = $member_id = $identity) {
                 var_dump($member_id, $identity, $identity);
 
 
 
                 $annonces = $annonceDao->getMyAnnonces($user);
+                $annonce = $this->annonceDao->getAnnonceById($annonceId);
+                var_dump($annonceId);
 
-
-                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonces' => $annonces));
+                echo $this->template->render('backend/my-annonces.html.twig', array( 'annonces' => $annonces, 'annonce'=> $annonce));
             } else {
 
                 echo $this->template->render('frontend/connexion.html.twig');
