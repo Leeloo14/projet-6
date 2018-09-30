@@ -21,6 +21,8 @@
                             <th style="width:15%" scope="col">Type</th>
                             <th style="width:60%" scope="col">Titre</th>
                             <th style="width:60%" scope="col"></th>
+                            <th style="width:60%" scope="col"></th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -29,8 +31,19 @@
                                 <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
                                 <td>{{ annonce.typeof }}</td>
                                 <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
-                                <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></td>
+                                <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter mon annonce</a></td>
+                                <td>
+                                    <form method="POST" action="/deleteu">
 
+                                        <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
+                                        <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
+                                        <div>
+
+                                            <button class="btn btn-danger " type="submit">supprimer
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
 
                         {% endfor %}
