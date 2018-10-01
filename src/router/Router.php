@@ -55,7 +55,7 @@ class Router
             $this->frontendController->spamEditAnnonce($request->id);
         });
         /*************************************************************************************************************/
-       
+
         $this->klein->respond('POST', '/updatestatus', function ($request) {
             $this->backendController->updateStatus( $request->status, $request->id);
         });
