@@ -3,7 +3,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './css/style.css';
 
 
-
 $(document).ready(function () {
 
     var jobCount = $('#list .in').length;

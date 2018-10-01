@@ -45,6 +45,8 @@ class BackendController
             throw new \Exception('Tous les champs ne sont pas complétés');
         } else {
             header('Location: /userpanel');
+
+
             die();
         }
     }

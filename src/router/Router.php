@@ -58,6 +58,7 @@ class Router
 
         $this->klein->respond('POST', '/updatestatus', function ($request) {
             $this->backendController->updateStatus( $request->status, $request->id);
+
         });
         /*********************************************************************************************************************/
         $this->klein->respond('GET', '/signup', function () {
@@ -65,6 +66,7 @@ class Router
         });
         $this->klein->respond('POST', '/signin', function ($request) {
             $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail);
+            
         });
         $this->klein->respond('GET', '/loginmaster', function () {
             $this->backendController->displayUserConnexionMaster();
