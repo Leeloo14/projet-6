@@ -17,7 +17,7 @@
                         <input type="hidden" id="action" name="action" value="updateMessage"/>
                         <div>
                             <div class="text-left mb-3">
-                                <label for="status">status actuel du message</label><br/>
+                                <label for="status">status actuel du message {{ messaging.id }}</label><br/>
                                 <textarea id="status" name="status" class="form-control">{{ messaging.status }}</textarea>
                             </div>
                             <button class="btn btn-success mt-2 mb-2 " type="submit">valider</button>

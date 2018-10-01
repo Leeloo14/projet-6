@@ -70,7 +70,7 @@ class BackendController
         /** @var Member $user */
         $user = $this->memberDao->getByEmail($mailconnect);
         if (password_verify($mdpconnect, $user->getPass())) {
-            $this->sessionService->storeCookie();
+            $this->sessionService->storeCookie($user->getId());
             header('Location: /userpanelmaster');
             die();
         }
@@ -282,26 +282,16 @@ class BackendController
         }
     }
 
-    /********************************************************/
-    /** permet d'éditer le staus d'un message */
-    function editStatusMessage($id)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $messagings = $this->messagingDao->getAllMessages();
-            $messaging = $this->messagingDao->getMessageById($id);
-            echo $this->template->render('backend/message-status.html.twig', array('messaging' => $messaging, 'messagings' => $messagings));
-        } else {
-
-            echo $this->template->render('frontend/master.html.twig');
-        }
-    }
 
     /** permet d'envoyer le mettre à jour le status d'un message */
-    function updateStatus($messagingId, $status)
+    function updateStatus($id, $status)
     {
         if ($this->sessionService->isClientAuthorized()) {
+
+
             $messagings = $this->messagingDao->getAllMessages();
-            $affectedLines = $this->messagingDao->updateMessage($messagingId, $status);
+            $affectedLines = $this->messagingDao->updateMessage( $id, $status);
+
             if ($affectedLines === false) {
                 throw new \Exception('Impossible de modifier le status !');
             } else {

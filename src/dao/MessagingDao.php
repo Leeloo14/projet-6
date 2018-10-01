@@ -50,12 +50,12 @@ class MessagingDao extends BaseDao
     }
 /***********************************************************************************/
     /** permet de modifier status message */
-    public function updateMessage($id, $status)
+    public function updateMessage( $id, $status)
     {
         $db = $this->dbConnect();
         $messaging = $db->prepare('UPDATE messaging SET status = ? WHERE id = ?');
-        var_dump($status);
-        $affectedLine = $messaging->execute(array($id, $status));
+        $affectedLine = $messaging->execute(array( $id, $status));
+
         return $affectedLine;
     }
 /*******************************************************************************************/
