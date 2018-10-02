@@ -12,13 +12,11 @@ class AnnonceDao extends BaseDao
 
         $db = $this->dbConnect();
         $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date,image,member_id) VALUES(?, ?,?,?,?,?,?, NOW(),?,?)');
-        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image,$member_id ));
+        $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id));
         return $affectedLines;
 
 
-
-        }
-
+    }
 
     /**Retourne une annonce suivant son id*/
     public
@@ -26,17 +24,6 @@ class AnnonceDao extends BaseDao
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city, author , creation_date, image FROM annonces WHERE id = ' . $id);
-        $req->execute();
-        $annonceData = $req->fetch();
-        return new Annonce($annonceData);
-    }
-
-    /**retourne une annonce*/
-    public
-    function getannonce($annonceId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id,title, content,typeof , tel ,email,city,  creation_date, image FROM annonces WHERE id =' . $annonceId);
         $req->execute();
         $annonceData = $req->fetch();
         return new Annonce($annonceData);
@@ -88,8 +75,7 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne les annonces signalées */
-    public
-    function getSpamAnnonces()
+    public function getSpamAnnonces()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces WHERE spam  IS NOT NULL');
@@ -102,13 +88,10 @@ class AnnonceDao extends BaseDao
         return $annonces;
     }
 
-    /****************************************************************************/
+
     /** renvoie la liste des annonces liées a un utilisateur */
-    /**A définir*/
     public function getMyAnnonces($user)
-    {/**SELECT annonces.id,annonces.title,annonces.content,annonces.typeof,annonces.tel,annonces.email,annonces.city,annonces.author,annonces.creation_date,annonces.spam
-    FROM annonces, member
-    WHERE annonces.member_id = member.id = "0"*/
+    {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT annonces.id ,annonces.title,annonces.content,annonces.typeof,annonces.tel,annonces.email,annonces.city,annonces.author,annonces.creation_date,annonces.spam FROM annonces  LEFT JOIN member  ON annonces.member_id = member.id  WHERE member_id = ?');
         $req->execute(array($user));
@@ -121,19 +104,7 @@ class AnnonceDao extends BaseDao
 
     }
 
-
-    /*********************************************************************************/
-    /** permet de mettre à jour une annonce */
-    public
-    function updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
-    {
-        $db = $this->dbConnect();
-        $annonce = $db->prepare('UPDATE annonces SET title = ?, content = ?,typeof =?, tel = ?, email = ?, city = ? WHERE id = ?');
-        $affectedLine = $annonce->execute(array($title, $content, $typeof, $tel, $email, $city));
-        return $affectedLine;
-    }
-
-    /** Retourne les ville et le nombre d'annonces correspondantes */
+    /** Retourne les annonces ordonnées par ville */
     public
     function getCity()
     {

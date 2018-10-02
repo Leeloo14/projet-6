@@ -8,21 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="public/css/responsive-table.css" rel="stylesheet"/>
     <link href="public/css/style.css" rel="stylesheet"/>
-
-
     {% block head %}{% endblock %}
 </head>
-
 <body class="wallpaper">
-
 {% include "backend/nav2.html.twig" %}
-
 <div class="ml-2 mt-2">
-    <button type="button" class="btn btn-light" onclick="window.history.back();" >Page Précédente</button>
+    <button type="button" class="btn btn-light" onclick="window.history.back();">Page Précédente</button>
 </div>
-
 {% block body %}{% endblock %}
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -32,26 +25,22 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-
-
 <footer>
-    <div class="bas" >
+    <div class="bas">
         <div class="container-fluid  text-center mt-2">
             {% block footer %}{% endblock %}
-
-
-
-
             <div class="text-white">
-                © 2018 Copyright:
-                <a> Anne Gasté </a>
-
+                Copyright © 2018 - Anne Gasté - Tous droits réservés
+                <div>
+                    <a class="text-white mr-4" href="/loginmaster">Connexion admin</a>
+                </div>
+                <div>
+                    <a class="text-white mr-4" href="/mentions"> Mentions légales </a>
+                </div>
             </div>
         </div>
 
     </div>
 </footer>
-
 </body>
-
 </html>

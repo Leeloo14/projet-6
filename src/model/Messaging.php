@@ -82,10 +82,12 @@ class Messaging
     {
         return $this->creationDate;
     }
+
     public function getObject()
     {
         return $this->object;
     }
+
     public function getStatus()
     {
         return $this->status;
@@ -132,6 +134,7 @@ class Messaging
     {
         $this->object = $object;
     }
+
     public function setStatus($status)
     {
         $this->status = $status;

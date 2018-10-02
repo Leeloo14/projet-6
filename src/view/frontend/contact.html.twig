@@ -1,53 +1,28 @@
 {% extends "frontend/template.html.twig" %}
-
 {% block head %}
     <meta charset="utf-8"/>
-    <title> contact </title>
-
+    <title> Contact </title>
 {% endblock %}
-
 {% block body %}
     <div class="ml-2 mt-2">
-        <button type="button" class="btn btn-light" onclick="window.history.back();" >Page Précédente</button>
+        <button type="button" class="btn btn-light" onclick="window.history.back();">Page Précédente</button>
     </div>
     <div class="wrapper">
-
-
-
         <form class="form-signin rounded" action="/sendmessage" method="post">
-                <div>
-                    <input type="hidden" id="action" name="action" value="createMessage"/>
-                </div>
+            <div>
+                <input type="hidden" id="action" name="action" value="createMessage"/>
+            </div>
             <h2 class="form-signin-heading ">Nous contacter</h2>
-
-
-
-                    <input type="text" class="form-control mb-2" id="first_name" name="first_name" placeholder="Nom" required=""/>
-
-
-
-            <input type="text" class="form-control mb-2" id="surname" name="surname"placeholder="Prénom" required=""/>
-
-
-
+            <input type="text" class="form-control mb-2" id="first_name" name="first_name" placeholder="Nom"
+                   required=""/>
+            <input type="text" class="form-control mb-2" id="surname" name="surname" placeholder="Prénom" required=""/>
             <input type="email" class="form-control  mb-2" id="email" name="email" placeholder="Email" required="">
-
-
             <input type="tel" class="form-control mb-2" id="tel" name="tel" placeholder="Téléphone" required="">
-
-
-            <input type="text" class="form-control mb-2  "id="object" name="object" placeholder="Motif" required=""/>
-
-
-
-                    <label for="message"></label><br/>
-                    <textarea id="message" name="message" class="form-control mb-2" placeholder="Votre message" required=""></textarea>
-
-
-                    <button class="btn btn-success btn-block" type="submit">envoyer</button>
-
-            </form>
-
+            <input type="text" class="form-control mb-2  " id="object" name="object" placeholder="Motif" required=""/>
+            <label for="message"></label><br/>
+            <textarea id="message" name="message" class="form-control mb-2" placeholder="Votre message"
+                      required=""></textarea>
+            <button class="btn btn-success btn-block" type="submit">envoyer</button>
+        </form>
     </div>
-
 {% endblock %}

@@ -2,55 +2,41 @@
 
 {% block head %}
     <meta charset="utf-8"/>
-    <title> mes annonces </title>
-
+    <title> Mes annonces </title>
 {% endblock %}
-
 {% block body %}
     <div class="global-container container-white container text-center mt-3 rounded">
-
-
-
-                    <table class="table table-hover">
-                        <h2 class="pt-2 pl-2">Mes annonces</h2>
-                        <thead>
-                        <tr>
-                            <th style="width:15%" scope="col">Date de publication</th>
-                            <th style="width:15%" scope="col">Type</th>
-                            <th style="width:60%" scope="col">Titre</th>
-                            <th style="width:60%" scope="col"></th>
-                            <th style="width:60%" scope="col"></th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for annonce in annonces %}
-                            <tr >
-                                <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
-                                <td>{{ annonce.typeof }}</td>
-                                <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
-                                <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter mon annonce</a></td>
-                                <td>
-                                    <form method="POST" action="/deleteu">
-
-                                        <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
-                                        <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
-                                        <div>
-
-                                            <button class="btn btn-danger mb-2" type="submit">supprimer
-                                            </button>
-                                        </div>
-                                    </form>
-                                </td>
-                            </tr>
-
-                        {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
-
-
-
-
+        <table class="table table-hover">
+            <h2 class="pt-2 pl-2">Mes annonces</h2>
+            <thead>
+            <tr>
+                <th style="width:15%" scope="col">Date de publication</th>
+                <th style="width:15%" scope="col">Type</th>
+                <th style="width:60%" scope="col">Titre</th>
+                <th style="width:60%" scope="col"></th>
+                <th style="width:60%" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
+                    <td>{{ annonce.typeof }}</td>
+                    <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
+                    <td><a class=" btn btn-info " href="/annonces/{{ annonce.id }}">Consulter mon annonce</a></td>
+                    <td>
+                        <form method="POST" action="/deleteu">
+                            <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
+                            <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
+                            <div>
+                                <button class="btn btn-danger mb-2" type="submit">supprimer
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

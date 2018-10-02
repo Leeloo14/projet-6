@@ -11,8 +11,6 @@ class Member
     private $dateInsription;
 
 
-
-
     public function getId()
     {
         return $this->id;

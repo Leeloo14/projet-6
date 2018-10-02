@@ -1,107 +1,86 @@
-{% extends "backend/template2.html.twig" %}
+{% extends "backend/template3.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
-    <title>Messages</title>
-
+    <title>Espace administraion</title>
 {% endblock %}
-
 {% block body %}
-
-
     <div class="global-container container-white container text-center mt-3 rounded">
-            <h2 class="pt-2 pl-2">Liste des messages reçus</h2>
-
-            <table class="table table-hover">
-                <thead>
+        <h2 class="pt-2 pl-2">Liste des messages reçus</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Objet</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for messaging in messagings %}
                 <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Objet</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for messaging in messagings %}
-                    <tr>
-                        <td>{{ messaging.surname|escape }}</td>
-
-                        <td>{{ messaging.firstName|escape }}</td>
-                        <td>{{ messaging.object|escape }}</td>
-                        <td>{{ messaging.status|escape }}</td>
-
-                        <td>
-                            <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
-                                    data-target="#myModal{{ messaging.id }}">
-
-                                Motif
-                            </button>
-                        </td>
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal{{ messaging.id }}" tabindex="-1" role="dialog"
-                             aria-labelledby="myModalLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-
-                                        <h4 class="modal-title" id="myModalLabel">Détails du Message</h4>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <p> {{ messaging.firstName|raw }}</p>
-                                        <p> {{ messaging.surname|raw }}</p>
-                                        <p><a href="mailto:{{ messaging.email }}">{{ messaging.email|raw }}</a></p>
-                                        <p> {{ messaging.tel|raw }}</p>
-                                        <p> {{ messaging.object|raw }}</p>
-                                        <p> {{ messaging.message|raw }}</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
-                                            Fermer
-                                        </button>
-
-                                    </div>
+                    <td>{{ messaging.surname|escape }}</td>
+                    <td>{{ messaging.firstName|escape }}</td>
+                    <td>{{ messaging.object|escape }}</td>
+                    <td>{{ messaging.status|escape }}</td>
+                    <td>
+                        <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
+                                data-target="#myModal{{ messaging.id }}">
+                            Motif
+                        </button>
+                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal{{ messaging.id }}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Détails du Message</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p> {{ messaging.firstName|raw }}</p>
+                                    <p> {{ messaging.surname|raw }}</p>
+                                    <p><a href="mailto:{{ messaging.email }}">{{ messaging.email|raw }}</a></p>
+                                    <p> {{ messaging.tel|raw }}</p>
+                                    <p> {{ messaging.object|raw }}</p>
+                                    <p> {{ messaging.message|raw }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Fermer
+                                    </button>
                                 </div>
                             </div>
-
                         </div>
 
-                        <td>
-                            <form method="POST" action="/updatestatus">
-                                <input type="hidden" id="id{{ messaging.id }}" name="id" value="{{ messaging.id }}"/>
-
-                                <input type="hidden" id="status" name="status" value="traité"/>
-                                <input type="hidden" id="action" name="action" value="updateMessage"/>
-
-                                <div>
-
-                                    <button class="btn btn-warning mt-2 mb-2 " type="submit">message traité
-                                    </button>
-                                </div>
-                            </form>
-
-                        </td>
-                        <td>
-                            <form method="POST" action="/deleteadminmessage">
-                                <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>
-                                <input type="hidden" id="action" name="action" value="deleteMessage"/>
-                                <div>
-
-                                    <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
-                                    </button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-        </div>
+                    </div>
+                    <td>
+                        <form method="POST" action="/updatestatus">
+                            <input type="hidden" id="id{{ messaging.id }}" name="id" value="{{ messaging.id }}"/>
+                            <input type="hidden" id="status" name="status" value="traité"/>
+                            <input type="hidden" id="action" name="action" value="updateMessage"/>
+                            <div>
+                                <button class="btn btn-warning mt-2 mb-2 " type="submit">message traité
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="/deleteadminmessage">
+                            <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>
+                            <input type="hidden" id="action" name="action" value="deleteMessage"/>
+                            <div>
+                                <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-
 {% endblock %}

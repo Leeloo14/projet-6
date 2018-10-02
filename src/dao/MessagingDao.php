@@ -48,7 +48,7 @@ class MessagingDao extends BaseDao
         $req->execute(array($messagingId));
 
     }
-/***********************************************************************************/
+
     /** permet de modifier status message */
     public function updateMessage( $id, $status)
     {
@@ -58,5 +58,5 @@ class MessagingDao extends BaseDao
 
         return $affectedLine;
     }
-/*******************************************************************************************/
+
 }

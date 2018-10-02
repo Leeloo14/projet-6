@@ -1,47 +1,34 @@
 {% extends "frontend/template.html.twig" %}
-
 {% block head %}
-
-    <title>propose</title>
-
+    <title>Annonces proposition</title>
 {% endblock %}
-
 {% block body %}
     <div class="ml-2 mt-2">
-        <button type="button" class="btn btn-light" onclick="window.history.back();" >Page Précédente</button>
+        <button type="button" class="btn btn-light" onclick="window.history.back();">Page Précédente</button>
     </div>
-
     <div class="global-container container-white container text-center mt-3 rounded">
-
-
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th style="width:15%" scope="col">Date de publication</th>
-                            <th style="width:15%" scope="col">Type</th>
-                            <th style="width:60%" scope="col">Titre</th>
-                            <th style="width:60%" scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for annonce in annonces %}
-                            <tr >
-                                <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
-                                <td>{{ annonce.typeof }}</td>
-                                <td class="text-dark " href="/annonces/{{ annonce.id }}">{{ annonce.title|escape }}</td>
-                                <td><a class=" btn btn-info mb-1 mt-1 ml-1 " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></td>
-                            </tr>
-
-                        {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
-
-
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th style="width:15%" scope="col">Date de publication</th>
+                <th style="width:15%" scope="col">Type</th>
+                <th style="width:60%" scope="col">Titre</th>
+                <th style="width:60%" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
+                    <td>{{ annonce.typeof }}</td>
+                    <td class="text-dark " href="/annonces/{{ annonce.id }}">{{ annonce.title|escape }}</td>
+                    <td><a class=" btn btn-info mb-1 mt-1 ml-1 " href="/annonces/{{ annonce.id }}">Consulter
+                            l'annonce</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
-
-
 {% block footer %}
-
 {% endblock %}

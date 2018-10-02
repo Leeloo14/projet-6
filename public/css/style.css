@@ -38,24 +38,30 @@ html, body {
 .social {
     margin-right: -246px;
 }
+
 .bg-light {
-    background: rgba(0,0,0,0.5) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
 
 }
-.marque{
+
+.marque {
     width: 50px;
 }
+
 .btn-position {
     float: right;
 }
+
 .global-container {
-    margin-bottom: 100px;}
+    margin-bottom: 100px;
+}
+
 .container-white {
     background-color: white;
 
 }
-.classic3 {
 
+.classic3 {
 
 }
 
@@ -63,12 +69,14 @@ html, body {
     text-align: center;
 
 }
-.container-test{
+
+.container-test {
     width: 191px;
     height: 207px;
     margin-top: -22%;
 
 }
+
 .wrapper {
     margin-top: 80px;
     margin-bottom: 80px;
@@ -120,24 +128,26 @@ html, body {
 
 .list-count {
 
-
-  float: left;
+    float: left;
     text-align: center;
     width: 70%;
     padding: 0.5em;
     color: #ddd;
     background-color: forestgreen;
 }
-.wallpaper{
+
+.wallpaper {
     background-image: url("../img/orig2.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
-.wallpaper3{
+
+.wallpaper3 {
     background-image: url("../img/background.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
+
 .empty-item {
     transition-property: opacity;
     transition-duration: 0s;
@@ -169,7 +179,6 @@ html, body {
     position: relative;
 }
 
-
 li {
     transition-property: margin, background-color, border-color;
     transition-duration: .4s, .2s, .2s;
@@ -187,51 +196,49 @@ li {
     position: relative;
     z-index: 2;
 }
+
 .background {
     background-image: url("../img/orig.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
-.btnmod{
+
+.btnmod {
     border-radius: 0px 25px 25px 0px;
     height: 50px;
     width: 40px;
     color: darkgrey;
     background: gray;
-    background: linear-gradient( white, ghostwhite);
+    background: linear-gradient(white, ghostwhite);
     box-shadow: 1px 1px 10px black inset,
-    0 1px 0 rgba( 255, 255, 255, 0.4);
+    0 1px 0 rgba(255, 255, 255, 0.4);
 
 }
 
-.btnmod a{
+.btnmod a {
     visibility: hidden;
 }
-.btnmod:hover a{
+
+.btnmod:hover a {
     visibility: visible;
 }
-.btnmod:hover{
+
+.btnmod:hover {
     -webkit-transition-property: width, background;
     -webkit-transition-duration: 50ms;
     -webkit-transition-timing-function: linear;
     -webkit-transition-delay: 0s;
 
 }
-.btnmod:hover{
+
+.btnmod:hover {
     width: 100%;
 
-
-
 }
-.in{
+
+.in {
     width: 100%;
 }
-
-
-
-
-
-
 
 .in:hover {
 

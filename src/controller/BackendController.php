@@ -67,7 +67,7 @@ class BackendController
 
     }
 
-    /** Permet de se connecter */
+    /** Permet de se connecter master*/
     function reqUserMaster($mailconnect, $mdpconnect)
     {
         /** @var Member $user */
@@ -182,42 +182,13 @@ class BackendController
         }
     }
 
+    /** affiche toutes les annonces présentes sur le site */
     function listAnnoncesAllMaster()
     {
         $annonces = $this->annonceDao->getAllAnnonces();
         echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces));
     }
 
-    /** permet de modifier une annonce existante */
-    function editAnnonce($annonceId)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $annonce = $annonceDao->getannonce($annonceId);
-            echo $this->template->render('backend/user-modify-annonce.html.twig', array('annonce' => $annonce));
-        } else {
-
-            echo $this->template->render('frontend/connexion.html.twig');
-        }
-    }
-
-    /** permet valider les modifications d'une annonce existante */
-    function replaceAnnonce($id, $title, $content, $typeof, $tel, $email, $city)
-    {
-        if ($this->sessionService->isClientAuthorized()) {
-            $annonceDao = new AnnonceDao();
-            $affectedLines = $this->annonceDao->updateAnnonce($id, $title, $content, $typeof, $tel, $email, $city);
-            $annonces = $annonceDao->getMyAnnonces();
-            if ($affectedLines === false) {
-                throw new \Exception('Impossible de modifier l/annonce!');
-            } else {
-                header('location: index.php?action=displayPanelUser');
-            }
-        } else {
-
-            echo $this->template->render('frontend/connexion.html.twig');
-        }
-    }
 
     /** permet d'afficher la page permettant de creer une nouvelle annonce*/
     function displayNewAnnonce()
@@ -293,7 +264,7 @@ class BackendController
 
 
             $messagings = $this->messagingDao->getAllMessages();
-            $affectedLines = $this->messagingDao->updateMessage( $id, $status);
+            $affectedLines = $this->messagingDao->updateMessage($id, $status);
 
             if ($affectedLines === false) {
                 throw new \Exception('Impossible de modifier le status !');
@@ -306,8 +277,6 @@ class BackendController
             echo $this->template->render('frontend/master.html.twig');
         }
     }
-
-    /*********************************************************************/
 
 
     /** permet de supprimer une annonce signalée admin*/
@@ -331,7 +300,7 @@ class BackendController
         }
     }
 
-    /** permet de supprimer une annonce signalée utilisateur*/
+    /** permet de supprimer une annonce par son auteur*/
     function deleteAnnonceUser($annonceId, $user)
 
     {
@@ -361,6 +330,7 @@ class BackendController
         }
     }
 
+    /**permet de supprimer une annonce par l admin*/
     function deleteAnnonceMaster($annonceId)
 
     {
@@ -382,9 +352,7 @@ class BackendController
 
     }
 
-
     /** permet de supprimer un message */
-
     function deleteMessage($messagingId)
 
     {

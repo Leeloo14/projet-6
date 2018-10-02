@@ -16,7 +16,6 @@ class MemberDao extends BaseDao
         return $affectedLines;
     }
 
-
     /** Permet de recuperer un utilisateur pour la connexion*/
     public function getByEmail($mailconnect)
     {

@@ -62,7 +62,7 @@ class FrontendController
     {
         $annonceDao = new AnnonceDao();
         $annonces = $annonceDao->getCity();
-        echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' =>$annonces));
+        echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' => $annonces));
     }
 
     /** Retourne une annonce */
@@ -72,8 +72,9 @@ class FrontendController
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
         echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
     }
+
     /**retourne l'annonce séléctionnée */
-    function city ($annonceId)
+    function city($annonceId)
     {
         $annonces = $this->annonceDao->getCity();
         $annonce = $this->annonceDao->getAnnonceById($annonceId);
@@ -90,20 +91,21 @@ class FrontendController
 
     /** permet d'envoyer le motif de signalement */
     function spamAnnonce($annonceId, $spam)
-    {$annonces = $this->annonceDao->getAllAnnonces();
+    {
+        $annonces = $this->annonceDao->getAllAnnonces();
         $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
         if ($affectedLines === false) {
             throw new \Exception('Impossible de signaler l\annonce !');
         } else {
-            echo $this->template->render('frontend/list-annonces-all.html.twig', array( 'annonces' => $annonces));
+            echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
 
         }
     }
 
     /** Permet d'envoyer un message*/
-    function sendMessage($first_name,  $surname, $email, $tel,$object, $message)
+    function sendMessage($first_name, $surname, $email, $tel, $object, $message)
     {
-        $affectedLines = $this->messagingDao->createMessage($first_name,  $surname, $email, $tel, $object, $message);
+        $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
 
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'envoyer le message !');
@@ -115,8 +117,16 @@ class FrontendController
     /** permet d'afficher la page de contact*/
     function displayContact()
     {
-        {
-            echo $this->template->render('frontend/contact.html.twig');
-        }
+
+        echo $this->template->render('frontend/contact.html.twig');
+
+    }
+
+    /** permet d'afficher la page de contact*/
+    function displayMentions()
+    {
+
+        echo $this->template->render('frontend/mentions.html.twig');
+
     }
 }

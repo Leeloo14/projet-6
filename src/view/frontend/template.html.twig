@@ -6,21 +6,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="/public/dist/styles.css" rel="stylesheet"/>
     <link href="public/css/responsive-table.css" rel="stylesheet"/>
-
     {% block head %}{% endblock %}
 </head>
-
-
 {% include "frontend/nav.html.twig" %}
-
-
 {% block body %}{% endblock %}
-
 <script src="/public/dist/build.js"></script>
 <body class="background">
-
-
-
 <script>
     (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -30,28 +21,22 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
   </script>
-
 <footer>
     <div class="bas">
         <div class="container-fluid  text-center mt-2">
-
             {% block footer %}{% endblock %}
-
-
-
-
-
             <div class="text-white">
-                © 2018 Copyright:
-                <a> Anne Gasté </a>
-              <div>
+                Copyright © 2018 - Anne Gasté - Tous droits réservés
+
+                <div>
                     <a class="text-white mr-4" href="/loginmaster">Connexion admin</a>
-              </div>
+                </div>
+                <div>
+                    <a class="text-white mr-4" href="/mentions"> Mentions légales </a>
+                </div>
             </div>
         </div>
     </div>
 </footer>
-
 </body>
-</div>
 </html>

@@ -109,6 +109,7 @@ class Annonce
     {
         return $this->spam;
     }
+
     public function getImage()
     {
         return $this->image;
@@ -118,6 +119,7 @@ class Annonce
     {
         return $this->memberId;
     }
+
     public function setId($id)
     {
         $this->id = $id;
@@ -169,10 +171,12 @@ class Annonce
     {
         $this->spam = $spam;
     }
+
     public function setImage($image)
     {
         $this->image = $image;
     }
+
     public function setMemberId($memberId)
     {
         $this->MemberId = $memberId;
