@@ -17,9 +17,12 @@
 
 {% include "backend/nav2.html.twig" %}
 
-
+<div class="ml-2 mt-2">
+    <button type="button" class="btn btn-light" onclick="window.history.back();" >Page Précédente</button>
+</div>
 
 {% block body %}{% endblock %}
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -42,6 +45,7 @@
             <div class="text-white">
                 © 2018 Copyright:
                 <a> Anne Gasté </a>
+
             </div>
         </div>
 
