@@ -7,89 +7,81 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-white container text-center mt-3"><h2>Annonces signalées</h2>
-        <div class="global-container">
-            <div class="container container-white rounded mt-3 mb-3">
+    <div class="global-container container-white container text-center mt-3 rounded">
 
-                <div class="container-white mt-5 rounded ">
-                    <div class=" container">
-
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th style="width:15%" scope="col">Date de publication</th>
-                                <th style="width:15%" scope="col">Auteur</th>
-                                <th style="width:60%" scope="col">Titre</th>
-                                <th style="width:60%" scope="col"></th>
-                                <th style="width:60%" scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for annonce in annonces %}
-                                <tr>
-                                    <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
-                                    <td>{{ annonce.author }}</td>
-                                    <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
-                                                data-target="#myModal{{ annonce.id }}"  >
-                                            Motif
-                                        </button>
-                                    </td>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal{{ annonce.id }}" tabindex="-1" role="dialog"
-                                         aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-
-                                                    <h4 class="modal-title" id="myModalLabel">L'annonce a été signalée pour le motif suivant:</h4>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <p> {{ annonce.spam|raw }}</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                                                        Fermer
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        <table class="table table-hover">
 
 
-                                    <td>
-                                        <form method="POST" action="/delete">
+            <thead>
+            <tr>
+                <th style="width:15%" scope="col">Date de publication</th>
+                <th style="width:15%" scope="col">Auteur</th>
+                <th style="width:60%" scope="col">Titre</th>
+                <th style="width:60%" scope="col"></th>
+                <th style="width:60%" scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
+                    <td>{{ annonce.author }}</td>
+                    <td><a class="text-dark">{{ annonce.title|escape }}</a></td>
 
-                                            <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
-                                            <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
-                                            <div>
+                    <td>
+                        <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
+                                data-target="#myModal{{ annonce.id }}">
+                            Motif
+                        </button>
+                    </td>
 
-                                                <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal{{ annonce.id }}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
 
-                                </tr>
+                                    <h4 class="modal-title" id="myModalLabel">L'annonce a été signalée pour le motif
+                                        suivant:</h4>
+                                </div>
+                                <div class="modal-body">
 
+                                    <p> {{ annonce.spam|raw }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Fermer
+                                    </button>
 
-
-                            {% endfor %}
-
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
 
-        </div>
+                    <td>
+                        <form method="POST" action="/delete">
+
+                            <input type="hidden" id="id" name="id" value="{{ annonce.id }}"/>
+                            <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
+                            <div>
+
+                                <button class="btn btn-danger mt-2 mb-2 " type="submit">supprimer
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+
+                </tr>
+
+
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
 
     </div>
-
 {% endblock %}

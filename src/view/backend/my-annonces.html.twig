@@ -7,14 +7,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-white container text-center mt-3"><h2>Mes annonces</h2>
-    <div class="global-container">
-        <div class="container container-white rounded mt-3 mb-3">
+    <div class="global-container container-white container text-center mt-3 rounded">
 
-            <div class="container-white mt-5 rounded ">
-                <div class=" container">
+
 
                     <table class="table table-hover">
+                        <h2 class="pt-2 pl-2">Mes annonces</h2>
                         <thead>
                         <tr>
                             <th style="width:15%" scope="col">Date de publication</th>
@@ -39,7 +37,7 @@
                                         <input type="hidden" id="action" name="action" value="deleteAnnonce"/>
                                         <div>
 
-                                            <button class="btn btn-danger " type="submit">supprimer
+                                            <button class="btn btn-danger mb-2" type="submit">supprimer
                                             </button>
                                         </div>
                                     </form>
@@ -51,9 +49,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
 
 {% endblock %}

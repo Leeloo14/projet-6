@@ -10,15 +10,16 @@
     <div class="ml-2 mt-2">
         <button type="button" class="btn btn-light" onclick="window.history.back();" >Page Précédente</button>
     </div>
-<div class="global-container">
+
     <section class="list-wrap">
 
-        <label for="search-text" class="text-white">Ville souhaitée</label>
-        <input type="text" id="search-text" placeholder="ville" class="search-box">
-        <span class="list-count"></span>
+
+        <input type="text" id="search-text" placeholder="ville souhaitée" class="search-box">
+
 
 
         <ul class="ul" id="list">
+            <div  class="list-count mb-4 "></div>
             {% for annonce in annonces %}
 
                 <li class="in" ><a>{{ annonce.city }}<a class=" btn-position btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></a></li>
@@ -32,7 +33,7 @@
         </ul>
 
     </section>
-</div>
+
 {% endblock %}
 
 

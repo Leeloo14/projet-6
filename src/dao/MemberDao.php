@@ -15,18 +15,6 @@ class MemberDao extends BaseDao
         $affectedLines = $member->execute(array($pseudo, $pass, $email));
         return $affectedLines;
     }
-/******************************************************/
-    /**Retourne une annonce suivant son id*/
-    public function getMemberById($id)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id,pseudo, pass, emaail, date_inscription FROM member WHERE id = ' . $id);
-        $req->execute();
-        $memberData = $req->fetch();
-        return new Member($memberData);
-    }
-  /***********************************/
-
 
 
     /** Permet de recuperer un utilisateur pour la connexion*/

@@ -52,6 +52,7 @@ html, body {
     margin-bottom: 100px;}
 .container-white {
     background-color: white;
+
 }
 .classic3 {
 
@@ -60,6 +61,7 @@ html, body {
 
 .container {
     text-align: center;
+
 }
 .container-test{
     width: 191px;
@@ -109,8 +111,7 @@ html, body {
 }
 
 .search-box {
-    float: left;
-    clear: left;
+
     width: 70%;
     padding: 0.4em;
     font-size: 1em;
@@ -118,15 +119,22 @@ html, body {
 }
 
 .list-count {
-    float: left;
+
+
+  float: left;
     text-align: center;
-    width: 30%;
+    width: 70%;
     padding: 0.5em;
     color: #ddd;
     background-color: forestgreen;
 }
 .wallpaper{
     background-image: url("../img/orig2.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+.wallpaper3{
+    background-image: url("../img/background.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -215,7 +223,9 @@ li {
 
 
 }
-
+.in{
+    width: 100%;
+}
 
 
 
@@ -224,6 +234,7 @@ li {
 
 
 .in:hover {
+
     background-color: #f9f9f9;
     border-color: #00BDE8;
 }
@@ -239,4 +250,6 @@ li {
     margin: 0;
     padding: 0;
 }
+
+
 

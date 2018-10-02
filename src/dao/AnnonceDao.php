@@ -169,4 +169,5 @@ class AnnonceDao extends BaseDao
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');
         $req->execute(array($annonceId));
     }
+
 }
