@@ -154,18 +154,18 @@ class BackendController
                     if (in_array($extension_upload, $extensions_autorisees)) {
 
                         move_uploaded_file($_FILES['image']['tmp_name'], $info = './public/upload/' . $file);
-                        var_dump($image);
+
 
                     }
                 }
             }
             $affectedLines = $this->annonceDao->createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image = $info, $member_id = $user->id);
-            var_dump($info, $user);
+
             $annonceDao = new AnnonceDao();
             $identity = $user->id;
 
             if ($user = $member_id = $identity) {
-                var_dump($member_id, $identity, $identity);
+
 
 
                 $annonces = $annonceDao->getMyAnnonces($user);
@@ -195,7 +195,7 @@ class BackendController
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
             echo $this->template->render('backend/new-annonce-view.html.twig');
-            var_dump($user);
+
         } else {
 
             echo $this->template->render('frontend/connexion.html.twig');
@@ -210,12 +210,12 @@ class BackendController
             $identity = $user->id;
 
             if ($user = $member_id = $identity) {
-                var_dump($member_id, $identity, $identity);
+
 
 
                 $annonces = $annonceDao->getMyAnnonces($user);
                 $annonce = $this->annonceDao->getAnnonceById($annonceId);
-                var_dump($annonceId);
+
 
                 echo $this->template->render('backend/my-annonces.html.twig', array('annonces' => $annonces, 'annonce' => $annonce));
             } else {
@@ -310,7 +310,7 @@ class BackendController
             $identity = $user->id;
 
             if ($user = $member_id = $identity) {
-                var_dump($member_id, $identity, $identity);
+
 
 
                 $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
