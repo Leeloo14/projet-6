@@ -70,6 +70,9 @@ class Router
         $this->klein->respond('POST', '/disconnect', function () {
             $this->backendController->disconnect();
         });
+        $this->klein->respond('POST', '/disconnectmaster', function () {
+            $this->backendController->disconnectMaster();
+        });
         $this->klein->respond('GET', '/mentions', function () {
             $this->frontendController->displayMentions();
         });

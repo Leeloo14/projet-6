@@ -71,9 +71,12 @@ class BackendController
     function reqUserMaster($mailconnect, $mdpconnect)
     {
         /** @var Member $user */
-        $user = $this->memberDao->getByEmail($mailconnect);
+        $user = $this->memberDao->getByEmailMaster($mailconnect);
+
+
         if (password_verify($mdpconnect, $user->getPass())) {
-            $this->sessionService->storeCookie($user->getId());
+            $this->sessionService->storeCookieMaster($user->getId());
+
             header('Location: /userpanelmaster');
             die();
         }
@@ -87,6 +90,13 @@ class BackendController
     {
         $this->sessionService->disconnect();
         echo $this->template->render('frontend/connexion.html.twig');
+    }
+
+    /** Permet de se deconnecter */
+    function disconnectMaster()
+    {
+        $this->sessionService->disconnectMaster();
+        echo $this->template->render('frontend/master.html.twig');
     }
 
     /** permet d'afficher la page de connexion*/
@@ -114,10 +124,10 @@ class BackendController
     /** permet d'afficher la page de connexion*/
     function displayUserConnexionMaster()
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             echo $this->template->render('backend/master-view.html.twig');
         } else {
-            $hasFormError = isset($_GET['error']) && $_GET["error"]; // A faire passer depuis le routeur
+            $hasFormError = isset($_GET['error']) && $_GET["error"];
             echo $this->template->render('frontend/master.html.twig', ["hasFormError" => $hasFormError]);
         }
     }
@@ -125,7 +135,7 @@ class BackendController
     /** permet d'afficher la page principale de l'espace personnel de la personne identifié */
     function displayUserPanelMaster()
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             echo $this->template->render('backend/master-view.html.twig');
         } else {
             echo $this->template->render('frontend/master.html.twig');;
@@ -167,7 +177,6 @@ class BackendController
             if ($user = $member_id = $identity) {
 
 
-
                 $annonces = $annonceDao->getMyAnnonces($user);
                 $annonce = $this->annonceDao->getAnnonceById($annonceId);
                 if ($affectedLines === false) {
@@ -185,8 +194,12 @@ class BackendController
     /** affiche toutes les annonces présentes sur le site */
     function listAnnoncesAllMaster()
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
-        echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorizedMaster()) {
+            $annonces = $this->annonceDao->getAllAnnonces();
+            echo $this->template->render('backend/list-annonces-all-master.html.twig', array('annonces' => $annonces));
+        } else {
+            echo $this->template->render('frontend/master.html.twig');;
+        }
     }
 
 
@@ -212,7 +225,6 @@ class BackendController
             if ($user = $member_id = $identity) {
 
 
-
                 $annonces = $annonceDao->getMyAnnonces($user);
                 $annonce = $this->annonceDao->getAnnonceById($annonceId);
 
@@ -229,7 +241,7 @@ class BackendController
     /**annonces signalées*/
     function listAnnoncesSpam($id)
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             $annonceDao = new AnnonceDao();
             $annonces = $annonceDao->getSpamAnnonces();
             $annonce = $annonceDao->getAnnonceById($id);
@@ -245,7 +257,7 @@ class BackendController
     /**messages recus*/
     function listMessages($id)
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             $messagingDao = new MessagingDao();
             $messagings = $messagingDao->getAllMessages();
             $messaging = $messagingDao->getMessageById($id);
@@ -260,7 +272,7 @@ class BackendController
     /** permet d'envoyer le mettre à jour le status d'un message */
     function updateStatus($id, $status)
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
 
 
             $messagings = $this->messagingDao->getAllMessages();
@@ -283,7 +295,7 @@ class BackendController
     function deleteAdminAnnonce($annonceId)
 
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             $annonceDao = new AnnonceDao();
             $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
             $annonces = $annonceDao->getSpamAnnonces();
@@ -312,7 +324,6 @@ class BackendController
             if ($user = $member_id = $identity) {
 
 
-
                 $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
                 $annonces = $annonceDao->getMyAnnonces($user);
                 $annonce = $this->annonceDao->getAnnonceById($annonceId);
@@ -334,7 +345,7 @@ class BackendController
     function deleteAnnonceMaster($annonceId)
 
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             $annonceDao = new AnnonceDao();
             $affectedLines = $this->annonceDao->deleteAnnonce($annonceId);
             $annonces = $annonceDao->getAllAnnonces();
@@ -356,7 +367,7 @@ class BackendController
     function deleteMessage($messagingId)
 
     {
-        if ($this->sessionService->isClientAuthorized()) {
+        if ($this->sessionService->isClientAuthorizedMaster()) {
             $messagingDao = new MessagingDao();
             $affectedLines = $this->messagingDao->deleteMessage($messagingId);
             $messagings = $messagingDao->getAllMessages();

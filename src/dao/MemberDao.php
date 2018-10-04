@@ -29,7 +29,7 @@ class MemberDao extends BaseDao
     public function getByEmailMaster($mailconnect)
     {
         $db = $this->dbConnect();
-        $requser = $db->prepare('SELECT * FROM member WHERE email = master2@hotmail.fr');
+        $requser = $db->prepare('SELECT * FROM member WHERE email = "master2@hotmail.fr"');
         $requser->execute([$mailconnect]);
         return $requser->fetchObject(Member::class);
     }
