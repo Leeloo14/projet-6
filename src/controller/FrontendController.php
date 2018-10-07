@@ -147,6 +147,7 @@ class FrontendController
 
     /** permet d'envoyer le motif de signalement */
     function spamAnnonce($annonceId, $spam)
+
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
             $userid = $user->id;
@@ -155,7 +156,7 @@ class FrontendController
             if ($affectedLines === false) {
                 throw new \Exception('Impossible de signaler l\annonce !');
             } else if ($affectedLines === true) {
-                echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+                echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces,'userid'=>$userid));
 
             } else {
                 $annonces = $this->annonceDao->getAllAnnonces();
@@ -164,11 +165,13 @@ class FrontendController
                     throw new \Exception('Impossible de signaler l\annonce !');
                 }
             }
-
         } else {
             echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
+
         }
     }
+
+
 
 
     /** Permet d'envoyer un message*/

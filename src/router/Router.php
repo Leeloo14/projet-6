@@ -57,7 +57,7 @@ class Router
             $this->backendController->displayInscription();
         });
         $this->klein->respond('POST', '/signin', function ($request) {
-            $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail, $request->mailconnect);
+            $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail);
         });
         $this->klein->respond('GET', '/loginmaster', function () {
             $this->backendController->displayUserConnexionMaster();

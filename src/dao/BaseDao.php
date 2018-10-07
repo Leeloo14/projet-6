@@ -2,6 +2,7 @@
 
 namespace Projet6\Dao;
 
+
 class BaseDao
 {
     protected function dbConnect()
