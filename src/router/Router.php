@@ -44,7 +44,7 @@ class Router
             $this->backendController->displayMyAnnonces($request->user, $request->annonceId);
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
-            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image, $request->member_id, $request->annonceId);
+            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image, $request->member_id);
         });
         $this->klein->respond('POST', '/spamannonce', function ($request) {
             $this->frontendController->spamAnnonce($request->id, $request->spam);
@@ -52,14 +52,12 @@ class Router
         $this->klein->respond('GET', '/spameditannonce/[:id]', function ($request) {
             $this->frontendController->spamEditAnnonce($request->id);
         });
-        $this->klein->respond('POST', '/updatestatus', function ($request) {
-            $this->backendController->updateStatus($request->status, $request->id);
-        });
+
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
         });
         $this->klein->respond('POST', '/signin', function ($request) {
-            $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail);
+            $this->backendController->inscription($request->pseudo, $request->mdp, $request->mail, $request->mailconnect);
         });
         $this->klein->respond('GET', '/loginmaster', function () {
             $this->backendController->displayUserConnexionMaster();

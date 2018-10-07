@@ -31,102 +31,193 @@ class FrontendController
     /**Home*/
     function listAnnonces()
     {
-        echo $this->template->render('frontend/list-annonces-view.html.twig');
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            echo $this->template->render('frontend/list-annonces-view.html.twig', array('userid' => $userid));
+        } else {
+            echo $this->template->render('frontend/list-annonces-view.html.twig');
+        }
     }
 
     /**Toutes les annonces */
     function listAnnoncesAll()
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+
+            $annonces = $this->annonceDao->getAllAnnonces();
+
+            echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+        } else
+
+            $annonces = $this->annonceDao->getAllAnnonces();
+
         echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
     }
 
     /**Annonce je recherche */
     function listAnnoncesSearch()
     {
-        $annonceDao = new AnnonceDao();
-        $annonces = $annonceDao->getTypeOfAnnoncesSearch();
-        echo $this->template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getTypeOfAnnoncesSearch();
+            echo $this->template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getTypeOfAnnoncesSearch();
+            echo $this->template->render('frontend/list-annonces-search-view.html.twig', array('annonces' => $annonces));
+        }
     }
 
     /**Annonce je propose */
     function listAnnoncesGive()
     {
-        $annonceDao = new AnnonceDao();
-        $annonces = $annonceDao->getTypeOfAnnoncesGive();
-        echo $this->template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getTypeOfAnnoncesGive();
+            echo $this->template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getTypeOfAnnoncesGive();
+            echo $this->template->render('frontend/list-annonces-give-view.html.twig', array('annonces' => $annonces));
+        }
     }
 
     /**Retoune la page pour selectionner une annonce par ville disponible*/
     function listAnnoncesCity()
     {
-        $annonceDao = new AnnonceDao();
-        $annonces = $annonceDao->getCity();
-        echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getCity();
+            echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonceDao = new AnnonceDao();
+            $annonces = $annonceDao->getCity();
+            echo $this->template->render('frontend/list-annonces-city.html.twig', array('annonces' => $annonces));
+        }
     }
 
     /** Retourne une annonce */
     function annonce($annonceId)
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
-        $annonce = $this->annonceDao->getAnnonceById($annonceId);
-        echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonces = $this->annonceDao->getAllAnnonces();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonces = $this->annonceDao->getAllAnnonces();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        }
     }
 
     /**retourne l'annonce séléctionnée */
     function city($annonceId)
     {
-        $annonces = $this->annonceDao->getCity();
-        $annonce = $this->annonceDao->getAnnonceById($annonceId);
-        echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonces = $this->annonceDao->getCity();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonces = $this->annonceDao->getCity();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/annonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        }
     }
 
     /** permet d'éditer un motif de signalement pour signaler une annonce */
     function spamEditAnnonce($annonceId)
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
-        $annonce = $this->annonceDao->getAnnonceById($annonceId);
-        echo $this->template->render('frontend/spamannonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonces = $this->annonceDao->getAllAnnonces();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/spamannonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces, 'userid' => $userid));
+        } else {
+            $annonces = $this->annonceDao->getAllAnnonces();
+            $annonce = $this->annonceDao->getAnnonceById($annonceId);
+            echo $this->template->render('frontend/spamannonce-view.html.twig', array('annonce' => $annonce, 'annonces' => $annonces));
+        }
     }
 
     /** permet d'envoyer le motif de signalement */
     function spamAnnonce($annonceId, $spam)
     {
-        $annonces = $this->annonceDao->getAllAnnonces();
-        $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
-        if ($affectedLines === false) {
-            throw new \Exception('Impossible de signaler l\annonce !');
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $annonces = $this->annonceDao->getAllAnnonces();
+            $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
+            if ($affectedLines === false) {
+                throw new \Exception('Impossible de signaler l\annonce !');
+            } else if ($affectedLines === true) {
+                echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces, 'userid' => $userid));
+
+            } else {
+                $annonces = $this->annonceDao->getAllAnnonces();
+                $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible de signaler l\annonce !');
+                }
+            }
+
         } else {
             echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
-
         }
     }
+
 
     /** Permet d'envoyer un message*/
     function sendMessage($first_name, $surname, $email, $tel, $object, $message)
     {
-        $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
 
-        if ($affectedLines === false) {
-            throw new \Exception('Impossible d\'envoyer le message !');
+            if ($affectedLines === false) {
+                throw new \Exception('Impossible d\'envoyer le message !');
+            } else if ($affectedLines === true) {
+                echo $this->template->render('frontend/contact.html.twig', array('userid' => $userid));
+            } else {
+                $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
+
+                if ($affectedLines === false) {
+                    throw new \Exception('Impossible d\'envoyer le message !');
+                }
+            }
         } else {
             echo $this->template->render('frontend/contact.html.twig');
         }
+
+
     }
 
     /** permet d'afficher la page de contact*/
     function displayContact()
     {
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            echo $this->template->render('frontend/contact.html.twig', array('userid' => $userid));
 
-        echo $this->template->render('frontend/contact.html.twig');
-
+        } else {
+            echo $this->template->render('frontend/contact.html.twig');
+        }
     }
+
 
     /** permet d'afficher la page de contact*/
     function displayMentions()
     {
+        if ($user = $this->sessionService->isClientAuthorized()) {
+            $userid = $user->id;
+            echo $this->template->render('frontend/mentions.html.twig', array('userid' => $userid));
 
-        echo $this->template->render('frontend/mentions.html.twig');
-
+        } else {
+            echo $this->template->render('frontend/mentions.html.twig');
+        }
     }
 }

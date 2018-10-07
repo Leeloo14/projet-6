@@ -24,8 +24,17 @@
             <a class="nav-item">
                 <a class="text-white mr-4" href="/signup">S'inscrire</a>
             </a>
+
             <a class="nav-item">
-                <a class="text-white mr-4" href="/login">Se connecter</a>
+                {% if userid > 0 %}
+
+                    <a class="text-white mr-4" href="/login">Espace personnel</a>
+                {% else %}
+
+
+                    <a class="text-white mr-4" href="/login">Se connecter</a>
+
+                {% endif %}
             </a>
             <a class="nav-item">
                 <a class="text-white " href="/contact">Contact</a>

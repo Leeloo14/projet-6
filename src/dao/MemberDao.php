@@ -33,4 +33,13 @@ class MemberDao extends BaseDao
         $requser->execute([$mailconnect]);
         return $requser->fetchObject(Member::class);
     }
+
+    public
+    function getMemberByEmail($memberEmail)
+    {
+        $db = $this->dbConnect();
+        $reqmember = $db->prepare('SELECT * FROM member WHERE email = ' . $memberEmail);
+        $reqmember->execute([$memberEmail]);
+        return $reqmember->fetchObject(Member::class);
+    }
 }

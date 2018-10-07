@@ -29,7 +29,7 @@
                     <td>
                         <button type="button" class="btn btn-info mt-2 mb-2" data-toggle="modal"
                                 data-target="#myModal{{ messaging.id }}">
-                            Motif
+                           Voir
                         </button>
                     </td>
                     <!-- Modal -->
@@ -57,17 +57,7 @@
                         </div>
 
                     </div>
-                    <td>
-                        <form method="POST" action="/updatestatus">
-                            <input type="hidden" id="id{{ messaging.id }}" name="id" value="{{ messaging.id }}"/>
-                            <input type="hidden" id="status" name="status" value="traité"/>
-                            <input type="hidden" id="action" name="action" value="updateMessage"/>
-                            <div>
-                                <button class="btn btn-warning mt-2 mb-2 " type="submit">message traité
-                                </button>
-                            </div>
-                        </form>
-                    </td>
+
                     <td>
                         <form method="POST" action="/deleteadminmessage">
                             <input type="hidden" id="id" name="id" value="{{ messaging.id }}"/>

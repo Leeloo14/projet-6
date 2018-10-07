@@ -57,5 +57,3 @@ $(document).ready(function () {
 
 
 });
-
-
