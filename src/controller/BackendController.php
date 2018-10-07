@@ -159,7 +159,7 @@ class BackendController
             $image = $_FILES ['image']['name'];
 
 
-            if ($_FILES['image']['size'] <= 1000000) {
+            if ($_FILES['image']['size'] <= 10000000000000) {
 
                 $infosfichier = pathinfo($_FILES['image']['name']);
                 $extension_upload = $infosfichier['extension'];
@@ -170,7 +170,7 @@ class BackendController
 
                 if (in_array($extension_upload, $extensions_autorisees)) {
 
-                    $c = move_uploaded_file($_FILES['image']['tmp_name'], $info = '../../public/upload/' . $image);
+                    $c = move_uploaded_file($_FILES['image']['tmp_name'], $info = 'public/upload/' . $image);
 
 var_dump($c,$info);
                 }
