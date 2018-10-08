@@ -257,6 +257,8 @@ li {
     margin: 0;
     padding: 0;
 }
-
+.break{
+    word-wrap:break-word;
+}
 
 
