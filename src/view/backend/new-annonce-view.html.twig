@@ -16,7 +16,7 @@
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="author">Votre nom</label><br/>
-                <input id="author" name="author" class="form-control "/>
+                <input id="author" name="author" class="form-control " required=""/>
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="typeof">type</label><br/>
@@ -27,28 +27,28 @@
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="title">titre</label><br/>
-                <input type="text" id="title" name="title" class="form-control"/>
+                <input type="text" id="title" name="title" class="form-control" required />
             </div>
             <div class="text-left mb-3 mr-2">
-                <label for="image">Sélectionner une photo</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="10000000000000"/>
-                <input type="file" id="image" name="image" class="form-control">
+                <label for="image">Sélectionner 1 photo (max 6 MO)</label>
+                <input type="hidden" name="MAX_FILE_SIZE" value="6000000"/>
+                <input type="file" id="image" name="image" class="form-control" required="">
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="content">texte</label><br/>
-                <textarea id="content" name="content" class="form-control"></textarea>
+                <textarea id="content" name="content" class="form-control" required=""></textarea>
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="city">ville</label><br/>
-                <input id="city" name="city" class="form-control">
+                <input id="city" name="city" class="form-control" required="">
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="tel">téléphone</label><br/>
-                <input id="tel" name="tel" class="form-control">
+                <input id="tel" name="tel" class="form-control" required="">
             </div>
             <div class="text-left mb-3 mr-2">
                 <label for="email">email</label><br/>
-                <input id="email" name="email" class="form-control">
+                <input id="email" name="email" class="form-control" required="">
             </div>
             <div class="text-left">
                 <button class="btn btn-success mt-2 mb-2" type="submit">Publier</button>

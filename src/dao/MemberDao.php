@@ -34,5 +34,4 @@ class MemberDao extends BaseDao
         return $requser->fetchObject(Member::class);
     }
 
-
 }

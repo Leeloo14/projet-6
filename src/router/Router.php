@@ -44,7 +44,7 @@ class Router
             $this->backendController->displayMyAnnonces($request->user, $request->annonceId);
         });
         $this->klein->respond('POST', '/addannonce', function ($request) {
-            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image, $request->member_id);
+            $this->backendController->addAnnonce($request->title, $request->content, $request->typeof, $request->tel, $request->email, $request->city, $request->author, $request->image, $request->member_id, $request->affectedLines);
         });
         $this->klein->respond('POST', '/spamannonce', function ($request) {
             $this->frontendController->spamAnnonce($request->id, $request->spam);
@@ -87,7 +87,7 @@ class Router
             $this->backendController->deleteAnnonceUser($request->id, $request->user);
         });
         $this->klein->respond('POST', '/deletem', function ($request) {
-            $this->backendController->deleteAnnonceMaster($request->id, $request->user);
+            $this->backendController->deleteAnnonceMaster($request->id);
         });
         $this->klein->respond('POST', '/deleteadminmessage', function ($request) {
             $this->backendController->deleteMessage($request->id);
