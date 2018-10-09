@@ -17,7 +17,7 @@
             <tbody>
             {% for annonce in annonces %}
                 <tr>
-                    <td>le {{ annonce.creationdate|date("d/m/Y h:m") }}</td>
+                    <td>le {{ annonce.creationdate|date("d/m/Y ") }}</td>
                     <td>{{ annonce.typeof }}</td>
                     <td class="text-dark " href="/annonces/{{ annonce.id }}">{{ annonce.title|escape }}</td>
                     <td><a class=" btn btn-info mb-1 mt-1 ml-1 " href="/annonces/{{ annonce.id }}">Consulter
