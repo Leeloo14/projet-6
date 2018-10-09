@@ -46,9 +46,5 @@ class MessagingDao extends BaseDao
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM messaging WHERE id = ?');
         $req->execute(array($messagingId));
-
     }
-
-
-
 }

@@ -52,7 +52,6 @@ class Router
         $this->klein->respond('GET', '/spameditannonce/[:id]', function ($request) {
             $this->frontendController->spamEditAnnonce($request->id);
         });
-
         $this->klein->respond('GET', '/signup', function () {
             $this->backendController->displayInscription();
         });

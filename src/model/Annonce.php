@@ -63,7 +63,6 @@ class Annonce
         return $this->id;
     }
 
-
     public function getTitle()
     {
         return $this->title;
@@ -73,7 +72,6 @@ class Annonce
     {
         return $this->content;
     }
-
 
     public function getTypeof()
     {
@@ -125,7 +123,6 @@ class Annonce
         $this->id = $id;
     }
 
-
     public function setTitle($title)
     {
         $this->title = $title;
@@ -135,7 +132,6 @@ class Annonce
     {
         $this->content = $content;
     }
-
 
     public function setTypeof($typeof)
     {
@@ -181,6 +177,5 @@ class Annonce
     {
         $this->MemberId = $memberId;
     }
-
 }
 

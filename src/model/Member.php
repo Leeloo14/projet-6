@@ -10,8 +10,6 @@ class Member
     private $email;
     private $dateInsription;
 
-
-
     public function getId()
     {
         return $this->id;

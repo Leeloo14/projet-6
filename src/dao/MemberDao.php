@@ -33,5 +33,4 @@ class MemberDao extends BaseDao
         $requser->execute([$mailconnect]);
         return $requser->fetchObject(Member::class);
     }
-
 }

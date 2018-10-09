@@ -44,14 +44,10 @@ class FrontendController
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
             $userid = $user->id;
-
             $annonces = $this->annonceDao->getAllAnnonces();
-
             echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces, 'userid' => $userid));
         } else {
-
             $annonces = $this->annonceDao->getAllAnnonces();
-
             echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
         }
     }
@@ -151,37 +147,29 @@ class FrontendController
 
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
-
             $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
             if ($affectedLines === false) {
                 throw new \Exception('Impossible de signaler l\annonce !');
             } else if ($affectedLines === true) {
                 header('Location: /annonces');
                 die();
-
-
             }
         } else {
-
             $affectedLines = $this->annonceDao->signalAnnonce($annonceId, $spam);
             if ($affectedLines === false) {
                 throw new \Exception('Impossible de signaler l\annonce !');
             } else {
                 header('Location: /annonces');
                 die();
-
             }
         }
     }
-
 
     /** Permet d'envoyer un message*/
     function sendMessage($first_name, $surname, $email, $tel, $object, $message)
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
-
             $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
-
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'envoyer le message !');
             } else if ($affectedLines === true) {
@@ -190,17 +178,12 @@ class FrontendController
             }
         } else {
             $affectedLines = $this->messagingDao->createMessage($first_name, $surname, $email, $tel, $object, $message);
-
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'envoyer le message !');
-
             } else {
                 header('Location: /contact');
-
-
                 die();
             }
-
         }
     }
 
@@ -210,12 +193,10 @@ class FrontendController
         if ($user = $this->sessionService->isClientAuthorized()) {
             $userid = $user->id;
             echo $this->template->render('frontend/contact.html.twig', array('userid' => $userid));
-
         } else {
             echo $this->template->render('frontend/contact.html.twig');
         }
     }
-
 
     /** permet d'afficher la page de contact*/
     function displayMentions()
@@ -223,7 +204,6 @@ class FrontendController
         if ($user = $this->sessionService->isClientAuthorized()) {
             $userid = $user->id;
             echo $this->template->render('frontend/mentions.html.twig', array('userid' => $userid));
-
         } else {
             echo $this->template->render('frontend/mentions.html.twig');
         }

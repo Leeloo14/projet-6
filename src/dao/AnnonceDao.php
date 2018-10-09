@@ -9,13 +9,10 @@ class AnnonceDao extends BaseDao
     /**Creer une nouvelle annonce*/
     public function createAnnonce($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id)
     {
-
         $db = $this->dbConnect();
         $annonces = $db->prepare('INSERT INTO annonces (title, content,typeof , tel ,email,city, author, creation_date,image,member_id) VALUES(?, ?,?,?,?,?,?, NOW(),?,?)');
         $affectedLines = $annonces->execute(array($title, $content, $typeof, $tel, $email, $city, $author, $image, $member_id));
         return $affectedLines;
-
-
     }
 
     /**Retourne une annonce suivant son id*/
@@ -60,8 +57,7 @@ class AnnonceDao extends BaseDao
     }
 
     /**Retourne les annonces type propose*/
-    public
-    function getTypeOfAnnoncesGive()
+    public function getTypeOfAnnoncesGive()
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces WHERE typeof = "propose"');
@@ -101,14 +97,11 @@ class AnnonceDao extends BaseDao
             array_push($annonces, new Annonce($annonceDB));
         }
         return $annonces;
-
     }
 
     /** Retourne les annonces ordonnées par ville */
-    public
-    function getCity()
+    public function getCity()
     {
-
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT * FROM annonces ORDER BY city ASC ');
         $req->execute();
@@ -118,13 +111,10 @@ class AnnonceDao extends BaseDao
             array_push($annonces, new Annonce($annonceDB));
         }
         return $annonces;
-
-
     }
 
     /** permet de signaler une annonce */
-    public
-    function signalAnnonce($id, $spam)
+    public function signalAnnonce($id, $spam)
     {
         $db = $this->dbConnect();
         $annonce = $db->prepare('UPDATE annonces SET spam = ? WHERE id = ?');
@@ -133,12 +123,10 @@ class AnnonceDao extends BaseDao
     }
 
     /** permet de supprimer une annonce */
-    public
-    function deleteAnnonce($annonceId)
+    public function deleteAnnonce($annonceId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM annonces WHERE id = ?');
         $req->execute(array($annonceId));
     }
-
 }

@@ -50,7 +50,6 @@ class Messaging
         return $this->id;
     }
 
-
     public function getFirstName()
     {
         return $this->firstName;
@@ -60,7 +59,6 @@ class Messaging
     {
         return $this->surname;
     }
-
 
     public function getEmail()
     {
@@ -76,7 +74,6 @@ class Messaging
     {
         return $this->message;
     }
-
 
     public function getCreationDate()
     {
@@ -98,7 +95,6 @@ class Messaging
         $this->id = $id;
     }
 
-
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -108,7 +104,6 @@ class Messaging
     {
         $this->surname = $surname;
     }
-
 
     public function setEmail($email)
     {
