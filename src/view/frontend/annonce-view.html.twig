@@ -38,7 +38,7 @@
                         </div>
                         <div class="modal-body">
                             Tel: {{ annonce.tel|raw }}
-                            <p> Email: {{ annonce.email|raw }}</p>
+                            <p><a>Email:</a> <a href="mailto:{{ annonce.email }}"> {{ annonce.email|raw }}</a></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

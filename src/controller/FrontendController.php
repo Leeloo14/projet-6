@@ -31,7 +31,7 @@ class FrontendController
     /**Home*/
     function listAnnonces()
     {
-        if ($user = $this->sessionService->isClientAuthorized() )  {
+        if ($user = $this->sessionService->isClientAuthorized()) {
             $userid = $user->id;
             echo $this->template->render('frontend/list-annonces-view.html.twig', array('userid' => $userid));
         } else {
@@ -48,11 +48,12 @@ class FrontendController
             $annonces = $this->annonceDao->getAllAnnonces();
 
             echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces, 'userid' => $userid));
-        } else
+        } else {
 
             $annonces = $this->annonceDao->getAllAnnonces();
 
-        echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
+            echo $this->template->render('frontend/list-annonces-all.html.twig', array('annonces' => $annonces));
+        }
     }
 
     /**Annonce je recherche */
@@ -195,6 +196,8 @@ class FrontendController
 
             } else {
                 header('Location: /contact');
+
+
                 die();
             }
 

@@ -9,8 +9,10 @@
         <ul class="ul" id="list">
             <div class="list-count mb-4 "></div>
             {% for annonce in annonces %}
+                <div>
                 <li class="in"><a>{{ annonce.city }}<a class=" btn-position btn btn-info " href="/annonces/{{ annonce.id }}">Consulter l'annonce</a></a>
                 </li>
+                </div>
             {% endfor %}
         </ul>
     </section>
