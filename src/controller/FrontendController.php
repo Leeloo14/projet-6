@@ -198,7 +198,7 @@ class FrontendController
         }
     }
 
-    /** permet d'afficher la page de contact*/
+    /** permet d'afficher les mentions légales*/
     function displayMentions()
     {
         if ($user = $this->sessionService->isClientAuthorized()) {
